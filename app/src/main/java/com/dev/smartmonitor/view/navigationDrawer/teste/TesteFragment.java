@@ -28,6 +28,7 @@ import com.dev.smartmonitor.util.Util;
 import com.dev.smartmonitor.view.view.CustomDialogMensagem;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -63,8 +64,17 @@ public class TesteFragment extends Fragment {
         List<NotificacaoSistema> notificacaoSistemas;
         CustomDialogMensagem customDialogMensagem;
 
+        String mesAtual;
+        int ultimoDiaMesAtual;
+
         @Override
         public void onClick(View v) {
+            Calendar calendar = Calendar.getInstance();
+
+            ultimoDiaMesAtual = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+            mesAtual =  ("00" + Integer.toString(calendar.get(Calendar.MONTH) + 1));
+            mesAtual.substring(mesAtual.length()-2,mesAtual.length());
+
             basicFactory = new BasicFactoryCreator();
 
             popularSistema();
@@ -109,11 +119,11 @@ public class TesteFragment extends Fragment {
             String dataBase, dataInicial, dataFinal, dia, horaMinutoAplicativo;
             long idNewRow;
 
-            for (int i = 1; i <= 30; i++) {
+            for (int i = 1; i <= ultimoDiaMesAtual; i++) {
                 dia = ("00" + Integer.toString(i));
                 dia = dia.substring(dia.length() - 2, dia.length());
 
-                dataBase = "202005" + dia;
+                dataBase = "2020" + mesAtual + dia;
 
                 dataInicial = dataBase + "0000";
                 dataFinal   = dataBase + "2359";
@@ -171,11 +181,11 @@ public class TesteFragment extends Fragment {
             long idNewRow;
 
             for (Aplicativo a : aplicativos) {
-                for (int i = 1; i <= 30; i++) {
+                for (int i = 1; i <= ultimoDiaMesAtual; i++) {
                     dia = ("00" + Integer.toString(i));
                     dia = dia.substring(dia.length() - 2, dia.length());
 
-                    dataBase = "202005" + dia;
+                    dataBase = "2020" + mesAtual + dia;
 
                     dataInicial = dataBase + "0000";
                     dataFinal   = dataBase + "2359";
@@ -231,12 +241,12 @@ public class TesteFragment extends Fragment {
             int horaInicio, horaFim;
             String dia, dataInicio, dataFim, hora;
 
-            for (int i = 1; i <= 30; i++){
+            for (int i = 1; i <= ultimoDiaMesAtual; i++){
                 dia = ("00" + Integer.toString(i));
                 dia = dia.substring(dia.length()-2,dia.length());
 
-                dataInicio = "202005" + dia;
-                dataFim = "202005" + dia;
+                dataInicio = "2020" + mesAtual + dia;
+                dataFim = "2020" + mesAtual + dia;
                 horaInicio = Math.abs(new Random().nextInt(1440) - 61);
                 horaFim = new Random().nextInt(1440 - horaInicio) + 1 + horaInicio;
 
@@ -271,13 +281,13 @@ public class TesteFragment extends Fragment {
             int horaInicio, horaFim;
             String dia, dataInicio, dataFim, hora;
 
-            for (int i = 1; i <= 30; i++){
+            for (int i = 1; i <= ultimoDiaMesAtual; i++){
                 for (int j = 0; j < aplicativos.size(); j++){
                     dia = ("00" + Integer.toString(i));
                     dia = dia.substring(dia.length()-2,dia.length());
 
-                    dataInicio = "202005" + dia;
-                    dataFim = "202005" + dia;
+                    dataInicio = "2020" + mesAtual + dia;
+                    dataFim = "2020" + mesAtual + dia;
                     horaInicio = Math.abs(new Random().nextInt(1440) - 61);
                     horaFim = new Random().nextInt(1440 - horaInicio) + 1 + horaInicio;
 
