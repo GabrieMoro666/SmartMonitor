@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="52dp"
+    tools:context=".view.notification.ActivityNotification">
+
+    <TextView
+        android:id="@+id/textViewRowNotificationData"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="10dp"
+        android:gravity="center" />
+<!--        android:text="01/01/2020" />-->
+
+    <TextView
+        android:id="@+id/textViewRowNotificationTitulo"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_toStartOf="@+id/checkBoxRowNotificationConcluido"
+        android:layout_toEndOf="@+id/textViewRowNotificationData"
+        android:gravity="center" />
+<!--        android:text="Tempo continuo atingido" />-->
+
+    <CheckBox
+        android:id="@+id/checkBoxRowNotificationConcluido"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp" />
+
+    <TextView
+        android:id="@+id/textViewRowNotificationDescricao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewRowNotificationTitulo"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="10dp"
+        android:textSize="12dp" />
+<!--        android:text="Sistema atingiu o limite de tempo configurado 1000 minutos com 1100 minutos no dia 01/01/2020"-->
+
+</RelativeLayout>
