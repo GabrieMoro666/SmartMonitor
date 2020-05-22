@@ -29,6 +29,7 @@ import com.dev.smartmonitor.view.view.CustomDialogMensagem;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -70,10 +71,11 @@ public class TesteFragment extends Fragment {
         @Override
         public void onClick(View v) {
             Calendar calendar = Calendar.getInstance();
+            calendar.setTime(Util.calcularDataAtual());
 
             ultimoDiaMesAtual = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
             mesAtual =  ("00" + Integer.toString(calendar.get(Calendar.MONTH) + 1));
-            mesAtual.substring(mesAtual.length()-2,mesAtual.length());
+            mesAtual = mesAtual.substring(mesAtual.length()-2,mesAtual.length());
 
             basicFactory = new BasicFactoryCreator();
 

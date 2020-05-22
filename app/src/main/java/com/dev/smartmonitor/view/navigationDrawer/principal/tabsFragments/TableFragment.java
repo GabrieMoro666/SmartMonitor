@@ -1,5 +1,6 @@
 package com.dev.smartmonitor.view.navigationDrawer.principal.tabsFragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -17,9 +18,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.dev.smartmonitor.R;
+import com.dev.smartmonitor.business.basic.basic.BasicFactoryCreator;
 import com.dev.smartmonitor.business.table.adapter.AdapterTable;
 import com.dev.smartmonitor.business.table.model.RowTable;
 import com.dev.smartmonitor.business.table.table.TableFactoryCreator;
+import com.dev.smartmonitor.persistence.dao.model.DadosUsoAplicativo;
+import com.dev.smartmonitor.util.Util;
+import com.dev.smartmonitor.view.view.CustomDialogMensagem;
 
 import java.util.List;
 
