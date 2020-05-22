@@ -16,5 +16,9 @@
             android:id="@+id/nav_conf_aplicativos"
             android:icon="@drawable/ic_menu_conf_aplicativos"
             android:title="@string/menu_aplicativos" />
+        <item
+            android:id="@+id/nav_teste"
+            android:icon="@drawable/ic_menu_teste"
+            android:title="@string/menu_teste" />
     </group>
 </menu>

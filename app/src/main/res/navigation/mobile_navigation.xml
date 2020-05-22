@@ -40,4 +40,13 @@
         android:name="com.dev.smartmonitor.view.navigationDrawer.configuracoesAplicativos.ConfiguracaoAplicativosFragment"
         android:label="@string/menu_aplicativos"
         tools:layout="@layout/fragment_configuracao_aplicativos" />
+
+    <fragment
+        android:id="@+id/nav_teste"
+        android:name="com.dev.smartmonitor.view.navigationDrawer.teste.TesteFragment"
+        android:label="@string/menu_aplicativos"
+        tools:layout="@layout/fragment_teste" />
+
+
+
 </navigation>

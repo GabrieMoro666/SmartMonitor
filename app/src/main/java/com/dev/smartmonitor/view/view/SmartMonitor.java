@@ -34,7 +34,7 @@ public class SmartMonitor extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_principal, R.id.nav_conf_sistema, R.id.nav_conf_aplicativos)
+                R.id.nav_principal, R.id.nav_conf_sistema, R.id.nav_conf_aplicativos, R.id.nav_teste)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
