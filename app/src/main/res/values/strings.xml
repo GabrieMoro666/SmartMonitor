@@ -1,13 +1,10 @@
 <resources>
     <string name="app_name">SmartMonitor</string>
-    <!--    <string name="navigation_drawer_open">Open navigation drawer</string>-->
-    <!--    <string name="navigation_drawer_close">Close navigation drawer</string>-->
+
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Configurações</string>
-
-    <!--    <string name="home_second">Home Second</string>-->
 
     <string name="menu_principal">Principal</string>
     <string name="menu_sistema">Conf. tempo de sistema</string>
@@ -17,14 +14,8 @@
     <string name="tempo_uso_diario">Tempo máximo de uso diário:</string>
     <string name="tempo_uso_continuo">Tempo máximo de uso contínuo:</string>
 
-    <string name="botao_hora">Escolher</string>
-
     <string name="aba_dados_uso">Dados de uso</string>
     <string name="aba_graficos">Gráficos</string>
     <string name="aba_notificacoes">Notificações</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
 
 </resources>

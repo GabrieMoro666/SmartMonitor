@@ -352,4 +352,15 @@ public class Util {
         return checagem;
     }
 
+//    public static int retornaNumeroDiasMes(){
+//        Calendar calendar = Calendar.getInstance();
+//
+//        int nDias = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+//        int mes = calendar.get(Calendar.MONTH);
+//
+//        return mes; //mes + 1 é o número real do mês
+//
+//    }
+
+
 }

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.dev.smartmonitor.R;
 import com.dev.smartmonitor.business.basic.basic.BasicFactoryCreator;
@@ -108,7 +109,7 @@ public class TesteFragment extends Fragment {
             String dataBase, dataInicial, dataFinal, dia, horaMinutoAplicativo;
             long idNewRow;
 
-            for (int i = 1; i <= 31; i++) {
+            for (int i = 1; i <= 30; i++) {
                 dia = ("00" + Integer.toString(i));
                 dia = dia.substring(dia.length() - 2, dia.length());
 
@@ -170,7 +171,7 @@ public class TesteFragment extends Fragment {
             long idNewRow;
 
             for (Aplicativo a : aplicativos) {
-                for (int i = 1; i <= 31; i++) {
+                for (int i = 1; i <= 30; i++) {
                     dia = ("00" + Integer.toString(i));
                     dia = dia.substring(dia.length() - 2, dia.length());
 
@@ -230,7 +231,7 @@ public class TesteFragment extends Fragment {
             int horaInicio, horaFim;
             String dia, dataInicio, dataFim, hora;
 
-            for (int i = 1; i <= 31; i++){
+            for (int i = 1; i <= 30; i++){
                 dia = ("00" + Integer.toString(i));
                 dia = dia.substring(dia.length()-2,dia.length());
 
@@ -270,7 +271,7 @@ public class TesteFragment extends Fragment {
             int horaInicio, horaFim;
             String dia, dataInicio, dataFim, hora;
 
-            for (int i = 1; i <= 31; i++){
+            for (int i = 1; i <= 30; i++){
                 for (int j = 0; j < aplicativos.size(); j++){
                     dia = ("00" + Integer.toString(i));
                     dia = dia.substring(dia.length()-2,dia.length());
@@ -388,7 +389,7 @@ public class TesteFragment extends Fragment {
             long idNewRow;
             checagemSistemas = new LinkedList<>();
 
-            for (int i = 1; i <= 31; i++){
+            for (int i = 1; i <= 30; i++){
                 checagemSistema = new ChecagemSistema();
 
                 dia = ("00" + Integer.toString(i));
@@ -426,5 +427,6 @@ public class TesteFragment extends Fragment {
         buttonPopularBanco = (Button)view.findViewById(R.id.buttonPopularBanco);
 
         buttonPopularBanco.setOnClickListener(new OnClickPopularBanco());
+
     }
 }

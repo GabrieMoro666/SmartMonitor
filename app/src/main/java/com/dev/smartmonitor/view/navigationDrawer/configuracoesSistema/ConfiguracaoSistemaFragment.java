@@ -18,8 +18,8 @@ public class ConfiguracaoSistemaFragment extends Fragment {
     private ConfiguracaoSistemaViewModel configuracaoSistemaViewModel;
 
     public ConfiguracaoSistemaFragment(){
-        CustomDialogMensagem customDialogMensagem = new CustomDialogMensagem((Activity) ContextSingleton.getContext(), "Teste 666");
-        customDialogMensagem.show();
+        CustomDialogMensagem customDialogMensagem = new CustomDialogMensagem((Activity) ContextSingleton.getContext(), "Teste");
+        //customDialogMensagem.show();
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

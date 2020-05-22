@@ -21,8 +21,8 @@ public class GraficosFragment extends Fragment {
     public GraficosFragment(Context context) {
         // Required empty public constructor
 
-        CustomDialogMensagem customDialogMensagem = new CustomDialogMensagem((Activity) context,"Gian gay");
-        customDialogMensagem.show();
+        CustomDialogMensagem customDialogMensagem = new CustomDialogMensagem((Activity) context,"");
+        //customDialogMensagem.show();
     }
 
 
