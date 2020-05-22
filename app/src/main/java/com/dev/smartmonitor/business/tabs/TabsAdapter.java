@@ -6,11 +6,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.dev.smartmonitor.R;
-import com.dev.smartmonitor.view.navigationDrawer.principal.tabsFragments.DadosUsoFragment;
+import com.dev.smartmonitor.view.navigationDrawer.principal.tabsFragments.TableFragment;
 import com.dev.smartmonitor.view.navigationDrawer.principal.tabsFragments.GraficosFragment;
 import com.dev.smartmonitor.view.navigationDrawer.principal.tabsFragments.NotificacoesFragment;
 
@@ -32,7 +31,7 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
         switch (position){
             case 0:
                 Toast.makeText(context, "CRIADO DADOS USO", Toast.LENGTH_SHORT).show();
-                return new DadosUsoFragment(context);
+                return new TableFragment(context);
             case 1:
                 Toast.makeText(context, "CRIADO GRAFICOS", Toast.LENGTH_SHORT).show();
                 return new GraficosFragment(context);
