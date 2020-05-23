@@ -90,8 +90,16 @@ public class TesteFragment extends Fragment {
             popularNotificacaoSistema();
 
 //            testarCalculoTempoNotificacao();
+//            testarCalculoDiaHoraMinuto();
 
             customDialogMensagem = new CustomDialogMensagem((Activity) ContextSingleton.getContext(), "Processo concluido");
+            customDialogMensagem.show();
+        }
+
+        private void testarCalculoDiaHoraMinuto(){
+            int minutos = (24 * 60 * 0) + (60 * 0) + (40);
+
+            customDialogMensagem = new CustomDialogMensagem((Activity) ContextSingleton.getContext(), "From hell " + Util.calcularDiaHoraMinutiDeMinutos(minutos));
             customDialogMensagem.show();
         }
 

@@ -352,4 +352,23 @@ public class Util {
         return checagem;
     }
 
+    public static String calcularDiaHoraMinutiDeMinutos(int minutos){
+        int diasCalculado, horasCalculado, minutosCalculado;
+        String mensagemDiasCalculado, mensagemHorasCalculado, mensagemminutosCalculado, mensagem;
+
+        diasCalculado = minutos / (24 * 60);
+        horasCalculado = (minutos - (diasCalculado * 24 * 60)) / 60;
+        minutosCalculado = minutos - ((diasCalculado * 24 * 60) + (horasCalculado * 60));
+
+        mensagemDiasCalculado    = diasCalculado    > 0 ? diasCalculado    + " dia"    + (diasCalculado    > 1 ? "s" : "") : "";
+        mensagemHorasCalculado   = horasCalculado   > 0 ? horasCalculado   + " hora"   + (horasCalculado   > 1 ? "s" : "") : "";
+        mensagemminutosCalculado = minutosCalculado > 0 ? minutosCalculado + " minuto" + (minutosCalculado > 1 ? "s" : "") : "";
+
+        mensagem = mensagemDiasCalculado;
+        mensagem += !mensagem.isEmpty() ? (!mensagemHorasCalculado.isEmpty() ? " e " + mensagemHorasCalculado : "") : mensagemHorasCalculado;
+        mensagem += !mensagem.isEmpty() ? (!mensagemminutosCalculado.isEmpty() ? " e " + mensagemminutosCalculado : "") : mensagemminutosCalculado;
+
+        return mensagem;
+    }
+
 }

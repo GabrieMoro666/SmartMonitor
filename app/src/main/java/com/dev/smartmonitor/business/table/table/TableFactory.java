@@ -69,7 +69,7 @@ public class TableFactory implements ITableFactory {
 
             rowTable = new RowTable();
             rowTable.setNomeAplicativo(a.getNome());
-            rowTable.setTempoUso(Integer.toString(Util.calcularMinutosDeHoras(Util.calcularTempoDadosUso(dataInicial, dataFinal, (List<DataInicialFinal>) ((List<? extends DataInicialFinal>) dadosUsoAplicativos)))) + " minutos");
+            rowTable.setTempoUso(Util.calcularDiaHoraMinutiDeMinutos(Util.calcularMinutosDeHoras(Util.calcularTempoDadosUso(dataInicial, dataFinal, (List<DataInicialFinal>) ((List<? extends DataInicialFinal>) dadosUsoAplicativos)))));
 
             rowTables.add(rowTable);
         }
@@ -118,7 +118,7 @@ public class TableFactory implements ITableFactory {
         if (sistema != null){
             dadosUsoSistemas = basicFactory.getFactry(context).createSelectFactory().buscarDadosUsoSistemaByData(dataInicial, dataFinal);
 
-            tempoUso = Integer.toString(Util.calcularMinutosDeHoras(Util.calcularTempoDadosUso(dataInicial, dataFinal, (List<DataInicialFinal>) ((List<? extends DataInicialFinal>) dadosUsoSistemas)))) + " minutos";
+            tempoUso =  Util.calcularDiaHoraMinutiDeMinutos(Util.calcularMinutosDeHoras(Util.calcularTempoDadosUso(dataInicial, dataFinal, (List<DataInicialFinal>) ((List<? extends DataInicialFinal>) dadosUsoSistemas))));
         }
 
         return tempoUso;
