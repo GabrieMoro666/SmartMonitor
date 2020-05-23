@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="52dp"
-    tools:context=".view.notification.ActivityNotification">
+    tools:context=".business.notification.adapter.AdapterNotification">
 
     <TextView
         android:id="@+id/textViewRowNotificationData"
-        android:layout_width="80dp"
+        android:layout_width="85dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_marginStart="10dp"

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.dev.smartmonitor.R;
 import com.dev.smartmonitor.business.notification.model.RowNotification;
+import com.dev.smartmonitor.business.notification.notification.NotificationFactoryCreator;
 
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -53,10 +54,14 @@ public class AdapterNotification extends RecyclerView.Adapter{
 
         public RowNotificationHolder(View itemView) {
             super(itemView);
-            this.textViewData = (TextView)itemView.findViewById(R.id.textViewRowTableAplicativo);
-            this.textViewTitulo = (TextView)itemView.findViewById(R.id.textViewRowTableTempo);
+            this.textViewData = (TextView)itemView.findViewById(R.id.textViewRowNotificationData);
+            this.textViewTitulo = (TextView)itemView.findViewById(R.id.textViewRowNotificationTitulo);
             this.checkBoxConcluir = (CheckBox)itemView.findViewById(R.id.checkBoxRowNotificationConcluido);
             this.textViewDescricao = (TextView)itemView.findViewById(R.id.textViewRowNotificationDescricao);
+
+            this.checkBoxConcluir.setOnCheckedChangeListener(new CheckedChangedCheckBoxCheckConcluir());
+
+            this.checkBoxConcluir.setSelected(false);
         }
 
         public class CheckedChangedCheckBoxCheckConcluir implements CompoundButton.OnCheckedChangeListener{
@@ -64,16 +69,24 @@ public class AdapterNotification extends RecyclerView.Adapter{
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 int position;
+                NotificationFactoryCreator notificationFactory = new NotificationFactoryCreator();
 
                 position = getAdapterPosition();
 
                 if (isChecked) {
-
+                    notificationFactory.getFactry(context).atualizarNotificacao(recyclerViewItems.get(position));
+                    removerRowRecyclerView(position);
                 }
 
             }
         }
 
+    }
+
+    private void removerRowRecyclerView(int position){
+        recyclerViewItems.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, getItemCount());
     }
 
     @Override

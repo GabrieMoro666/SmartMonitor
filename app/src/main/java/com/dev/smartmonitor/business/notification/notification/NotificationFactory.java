@@ -55,7 +55,7 @@ public class NotificationFactory implements INotificationFactory{
         List<NotificacaoAplicativo> notificacaoAplicativos;
         RowNotification rowNotification;
 
-        notificacaoAplicativos = basicFactory.getFactry(context).createSelectFactory().buscarNotificacaoAplicativoAll(new String[] { "E"});
+        notificacaoAplicativos = basicFactory.getFactry(context).createSelectFactory().buscarNotificacaoAplicativoAll(new String[] { "E" });
 
         for (NotificacaoAplicativo notificacaoAplicativo : notificacaoAplicativos) {
             rowNotification = new RowNotification();
