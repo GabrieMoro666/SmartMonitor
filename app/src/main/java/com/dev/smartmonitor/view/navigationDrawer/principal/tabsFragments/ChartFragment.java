@@ -19,7 +19,7 @@ import com.dev.smartmonitor.R;
 import com.dev.smartmonitor.business.chart.chart.ChartFactoryCreator;
 
 
-public class GraficosFragment extends Fragment {
+public class ChartFragment extends Fragment {
 
     private Context context;
     private Spinner spinnerFiltroPeriodo;
@@ -29,7 +29,7 @@ public class GraficosFragment extends Fragment {
     private ArrayAdapter<String> spinnerAdapter;
     private AnyChartView anyChartView;
 
-    public GraficosFragment(Context context) {
+    public ChartFragment(Context context) {
         this.context = context;
     }
 

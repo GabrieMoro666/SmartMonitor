@@ -1,15 +1,13 @@
 package com.dev.smartmonitor.business.tabs;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.dev.smartmonitor.R;
 import com.dev.smartmonitor.view.navigationDrawer.principal.tabsFragments.TableFragment;
-import com.dev.smartmonitor.view.navigationDrawer.principal.tabsFragments.GraficosFragment;
+import com.dev.smartmonitor.view.navigationDrawer.principal.tabsFragments.ChartFragment;
 import com.dev.smartmonitor.view.navigationDrawer.principal.tabsFragments.NotificationFragment;
 
 public class TabsAdapter extends FragmentStatePagerAdapter {
@@ -32,7 +30,7 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
                 fragment = new TableFragment(context);
                 break;
             case 1:
-                fragment = new GraficosFragment(context);
+                fragment = new ChartFragment(context);
                 break;
             case 2:
                 fragment = new NotificationFragment(context);

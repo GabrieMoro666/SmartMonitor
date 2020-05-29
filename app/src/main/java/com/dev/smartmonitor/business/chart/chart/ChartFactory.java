@@ -76,7 +76,7 @@ public class ChartFactory implements IChartFactory{
         for (Aplicativo a : aplicativos) {
             dadosUsoAplicativos = basicFactory.getFactry(context).createSelectFactory().buscarDadosUsoAplicativoByDataIdAplicativo(dataInicial, dataFinal, a.getId());
 
-            valueDataEntry = new ValueDataEntry(a.getNome(), Util.calcularTempoDadosUso(dataInicial, dataFinal, (List<DataInicialFinal>) ((List<? extends DataInicialFinal>) dadosUsoAplicativos)));
+            valueDataEntry = new ValueDataEntry(a.getNome(), Util.calcularTempoDadosUso(dataInicial, dataFinal, (List<DataInicialFinal>) ((List<? extends DataInicialFinal>) dadosUsoAplicativos)) / 60);
 
             dataEntries.add(valueDataEntry);
         }
@@ -117,7 +117,7 @@ public class ChartFactory implements IChartFactory{
         cartesian.interactivity().hoverMode(HoverMode.BY_X);
 
         cartesian.xAxis(0).title("Aplicativos");
-        cartesian.yAxis(0).title("Tempo de Uso");
+        cartesian.yAxis(0).title("Tempo de Uso (Horas)");
 
         return cartesian;
     }
