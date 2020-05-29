@@ -1,5 +1,6 @@
 package com.dev.smartmonitor.business.basic.select;
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.dev.smartmonitor.persistence.dao.db.feedReader.FeedReaderAplicativo;
@@ -22,6 +23,7 @@ import com.dev.smartmonitor.persistence.dao.model.NotificacaoAplicativo;
 import com.dev.smartmonitor.persistence.dao.model.NotificacaoSistema;
 import com.dev.smartmonitor.persistence.dao.model.Sistema;
 import com.dev.smartmonitor.util.Util;
+import com.dev.smartmonitor.view.view.CustomDialogMensagem;
 
 import java.util.Date;
 import java.util.LinkedList;

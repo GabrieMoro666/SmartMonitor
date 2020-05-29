@@ -89,6 +89,9 @@ public class TesteFragment extends Fragment {
             popularNotificacaoAplicativo();
             popularNotificacaoSistema();
 
+//            customDialogMensagem = new CustomDialogMensagem((Activity) ContextSingleton.getContext(), "Dia hj " + new SimpleDateFormat("dd/MM/yyyy").format(Util.calcularDataAtual()) + " Dia -30 " + new SimpleDateFormat("dd/MM/yyyy").format(Util.voltarMesData(Util.calcularDataAtual())));
+//            customDialogMensagem.show();
+
 //            testarCalculoTempoNotificacao();
 //            testarCalculoDiaHoraMinuto();
 
@@ -126,8 +129,8 @@ public class TesteFragment extends Fragment {
             ConfiguracaoTempoSistema configuracaoTempoSistema;
             List<DadosUsoSistema> duSData;
             notificacaoSistemas = new LinkedList<>();
-            String dataBase, dataInicial, dataFinal, dia, horaMinutoAplicativo;
-            long idNewRow;
+            String dataBase, dataInicial, dataFinal, dia;
+            long idNewRow, minutos;
 
             for (int i = 1; i <= ultimoDiaMesAtual; i++) {
                 dia = ("00" + Integer.toString(i));
@@ -140,17 +143,17 @@ public class TesteFragment extends Fragment {
 
                 duSData = basicFactory.getFactry((Activity) ContextSingleton.getContext()).createSelectFactory().buscarDadosUsoSistemaByData(Util.formatarDataHoraVolta(Long.parseLong(dataInicial)), Util.formatarDataHoraVolta(Long.parseLong(dataFinal)));
 
-                horaMinutoAplicativo = Util.calcularTempoDadosUso(Util.formatarDataVolta(Long.parseLong(dataBase)), Util.formatarDataVolta(Long.parseLong(dataBase)), (List<DataInicialFinal>) ((List<? extends DataInicialFinal>)duSData));
+                minutos = Util.calcularTempoDadosUso(Util.formatarDataVolta(Long.parseLong(dataBase)), Util.formatarDataVolta(Long.parseLong(dataBase)), (List<DataInicialFinal>) ((List<? extends DataInicialFinal>)duSData));
 
                 configuracaoTempoSistema = basicFactory.getFactry((Activity) ContextSingleton.getContext()).createSelectFactory().buscarConfiguracaoTempoSistemaByIdSistema(sistema.getId());
 
-                if (Util.calcularMinutosDeHoras(horaMinutoAplicativo) > Util.calcularMinutosDeHoras(configuracaoTempoSistema.getTempoDiario())){
+                if (minutos > Util.calcularMinutosDeHoras(configuracaoTempoSistema.getTempoDiario())){
                     notificacaoSistema = new NotificacaoSistema();
                     notificacaoSistema.setIdSistema(sistema.getId());
                     notificacaoSistema.setIdConfiguracao(configuracaoTempoSistema.getId());
                     notificacaoSistema.setData(Util.formatarDataVolta(Long.parseLong(dataBase)));
                     notificacaoSistema.setTitulo("Tempo diario atingido");
-                    notificacaoSistema.setDescricao("Sistema atingiu o limite de tempo configurado " + Util.calcularDiaHoraMinutiDeMinutos(Util.calcularMinutosDeHoras(configuracaoTempoSistema.getTempoDiario())) + " com " + Util.calcularDiaHoraMinutiDeMinutos(Util.calcularMinutosDeHoras(horaMinutoAplicativo)));
+                    notificacaoSistema.setDescricao("Sistema atingiu o limite de tempo configurado " + Util.calcularDiaHoraMinutiDeMinutos(Util.calcularMinutosDeHoras(configuracaoTempoSistema.getTempoDiario())) + " com " + Util.calcularDiaHoraMinutiDeMinutos((int) minutos));
                     notificacaoSistema.setStatus("E");
 
                     idNewRow = basicFactory.getFactry((Activity) ContextSingleton.getContext()).createInsertFactory().inserir(notificacaoSistema);
@@ -160,14 +163,14 @@ public class TesteFragment extends Fragment {
                 }
 
                 for (DadosUsoSistema duaCuntinuo : duSData) {
-                    horaMinutoAplicativo = Util.calcularTempoDadosUso(Util.formatarDataVolta(Long.parseLong(dataBase)), Util.formatarDataVolta(Long.parseLong(dataBase)), duaCuntinuo);
-                    if (Util.calcularMinutosDeHoras(horaMinutoAplicativo) > Util.calcularMinutosDeHoras(configuracaoTempoSistema.getTempoContinuo())){
+                    minutos = Util.calcularTempoDadosUso(Util.formatarDataVolta(Long.parseLong(dataBase)), Util.formatarDataVolta(Long.parseLong(dataBase)), duaCuntinuo);
+                    if (minutos > Util.calcularMinutosDeHoras(configuracaoTempoSistema.getTempoContinuo())){
                         notificacaoSistema = new NotificacaoSistema();
                         notificacaoSistema.setIdSistema(sistema.getId());
                         notificacaoSistema.setIdConfiguracao(configuracaoTempoSistema.getId());
                         notificacaoSistema.setData(Util.formatarDataVolta(Long.parseLong(dataBase)));
                         notificacaoSistema.setTitulo("Tempo continuo atingido");
-                        notificacaoSistema.setDescricao("Sistema atingiu o limite de tempo configurado " + Util.calcularDiaHoraMinutiDeMinutos(Util.calcularMinutosDeHoras(configuracaoTempoSistema.getTempoContinuo())) + " com " + Util.calcularDiaHoraMinutiDeMinutos(Util.calcularMinutosDeHoras(horaMinutoAplicativo)));
+                        notificacaoSistema.setDescricao("Sistema atingiu o limite de tempo configurado " + Util.calcularDiaHoraMinutiDeMinutos(Util.calcularMinutosDeHoras(configuracaoTempoSistema.getTempoContinuo())) + " com " + Util.calcularDiaHoraMinutiDeMinutos((int) minutos));
                         notificacaoSistema.setStatus("E");
 
                         idNewRow = basicFactory.getFactry((Activity) ContextSingleton.getContext()).createInsertFactory().inserir(notificacaoSistema);
@@ -187,8 +190,8 @@ public class TesteFragment extends Fragment {
             ConfiguracaoTempoAplicativo configuracaoTempoAplicativo;
             List<DadosUsoAplicativo> duAData;
             notificacaoAplicativos = new LinkedList<>();
-            String dataBase, dataInicial, dataFinal, dia, horaMinutoAplicativo;
-            long idNewRow;
+            String dataBase, dataInicial, dataFinal, dia;
+            long idNewRow, minutos;
 
             for (Aplicativo a : aplicativos) {
                 for (int i = 1; i <= ultimoDiaMesAtual; i++) {
@@ -202,17 +205,17 @@ public class TesteFragment extends Fragment {
 
                     duAData = basicFactory.getFactry((Activity) ContextSingleton.getContext()).createSelectFactory().buscarDadosUsoAplicativoByDataIdAplicativo(Util.formatarDataHoraVolta(Long.parseLong(dataInicial)), Util.formatarDataHoraVolta(Long.parseLong(dataFinal)), a.getId());
 
-                    horaMinutoAplicativo = Util.calcularTempoDadosUso(Util.formatarDataVolta(Long.parseLong(dataBase)), Util.formatarDataVolta(Long.parseLong(dataBase)), (List<DataInicialFinal>) ((List<? extends DataInicialFinal>)duAData));
+                    minutos = Util.calcularTempoDadosUso(Util.formatarDataVolta(Long.parseLong(dataBase)), Util.formatarDataVolta(Long.parseLong(dataBase)), (List<DataInicialFinal>) ((List<? extends DataInicialFinal>)duAData));
 
                     configuracaoTempoAplicativo = basicFactory.getFactry((Activity) ContextSingleton.getContext()).createSelectFactory().buscarConfiguracaoTempoAplicativoByIdAplicativo(a.getId());
 
-                    if (Util.calcularMinutosDeHoras(horaMinutoAplicativo) > Util.calcularMinutosDeHoras(configuracaoTempoAplicativo.getTempoDiario())){
+                    if (minutos > Util.calcularMinutosDeHoras(configuracaoTempoAplicativo.getTempoDiario())){
                         notificacaoAplicativo = new NotificacaoAplicativo();
                         notificacaoAplicativo.setIdAplicativo(a.getId());
                         notificacaoAplicativo.setIdConfiguracao(configuracaoTempoAplicativo.getId());
                         notificacaoAplicativo.setData(Util.formatarDataVolta(Long.parseLong(dataBase)));
                         notificacaoAplicativo.setTitulo("Tempo diario atingido");
-                        notificacaoAplicativo.setDescricao("Aplicaivo " + a.getNome() + " atingiu o limite de tempo configurado " + Util.calcularDiaHoraMinutiDeMinutos(Util.calcularMinutosDeHoras(configuracaoTempoAplicativo.getTempoDiario())) + " com " + Util.calcularDiaHoraMinutiDeMinutos(Util.calcularMinutosDeHoras(horaMinutoAplicativo)));
+                        notificacaoAplicativo.setDescricao("Aplicaivo " + a.getNome() + " atingiu o limite de tempo configurado " + Util.calcularDiaHoraMinutiDeMinutos(Util.calcularMinutosDeHoras(configuracaoTempoAplicativo.getTempoDiario())) + " com " + Util.calcularDiaHoraMinutiDeMinutos((int) minutos));
                         notificacaoAplicativo.setStatus("E");
 
                         idNewRow = basicFactory.getFactry((Activity) ContextSingleton.getContext()).createInsertFactory().inserir(notificacaoAplicativo);
@@ -222,14 +225,14 @@ public class TesteFragment extends Fragment {
                     }
 
                     for (DadosUsoAplicativo duaCuntinuo : duAData) {
-                        horaMinutoAplicativo = Util.calcularTempoDadosUso(Util.formatarDataVolta(Long.parseLong(dataBase)), Util.formatarDataVolta(Long.parseLong(dataBase)), duaCuntinuo);
-                        if (Util.calcularMinutosDeHoras(horaMinutoAplicativo) > Util.calcularMinutosDeHoras(configuracaoTempoAplicativo.getTempoContinuo())){
+                        minutos = Util.calcularTempoDadosUso(Util.formatarDataVolta(Long.parseLong(dataBase)), Util.formatarDataVolta(Long.parseLong(dataBase)), duaCuntinuo);
+                        if (minutos > Util.calcularMinutosDeHoras(configuracaoTempoAplicativo.getTempoContinuo())){
                             notificacaoAplicativo = new NotificacaoAplicativo();
                             notificacaoAplicativo.setIdAplicativo(a.getId());
                             notificacaoAplicativo.setIdConfiguracao(configuracaoTempoAplicativo.getId());
                             notificacaoAplicativo.setData(Util.formatarDataVolta(Long.parseLong(dataBase)));
                             notificacaoAplicativo.setTitulo("Tempo continuo atingido");
-                            notificacaoAplicativo.setDescricao("Aplicaivo " + a.getNome() + " atingiu o limite de tempo configurado " + Util.calcularDiaHoraMinutiDeMinutos(Util.calcularMinutosDeHoras(configuracaoTempoAplicativo.getTempoContinuo())) + " com " + Util.calcularDiaHoraMinutiDeMinutos(Util.calcularMinutosDeHoras(horaMinutoAplicativo)));
+                            notificacaoAplicativo.setDescricao("Aplicaivo " + a.getNome() + " atingiu o limite de tempo configurado " + Util.calcularDiaHoraMinutiDeMinutos(Util.calcularMinutosDeHoras(configuracaoTempoAplicativo.getTempoContinuo())) + " com " + Util.calcularDiaHoraMinutiDeMinutos((int) minutos));
                             notificacaoAplicativo.setStatus("E");
 
                             idNewRow = basicFactory.getFactry((Activity) ContextSingleton.getContext()).createInsertFactory().inserir(notificacaoAplicativo);
@@ -385,7 +388,7 @@ public class TesteFragment extends Fragment {
             long idNewRow;
             aplicativos = new LinkedList<>();
 
-            for (int i = 1; i <= 30; i++){
+            for (int i = 1; i <= 5; i++){
                 aplicativo = new Aplicativo();
 
                 aplicativo.setIdSistema(sistema.getId());

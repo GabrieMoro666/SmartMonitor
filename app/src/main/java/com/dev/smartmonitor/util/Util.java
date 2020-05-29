@@ -73,16 +73,25 @@ public class Util {
     }
 
     public static String calcularHorasDeMinutos(int minutos) {
-        int horasCalculadas, minutosCalculos;
+        int diasCalculado, horasCalculado, minutosCalculado, minutosRestantes;
         String horasRet, minutosRet;
 
-        horasCalculadas = minutos / 60;
-        minutosCalculos = (int) ((((float)minutos / 60)-horasCalculadas) * 60);
+        minutosRestantes = minutos;
 
-        horasRet = ("00"+ Integer.toString(horasCalculadas));
+        diasCalculado = minutosRestantes / 1440;
+        minutosRestantes = minutosRestantes - (diasCalculado * 1440);
+
+        horasCalculado =  minutosRestantes / 60;
+        minutosRestantes = minutosRestantes - (horasCalculado * 60);
+
+        minutosCalculado = minutosRestantes;
+
+        horasCalculado = horasCalculado + diasCalculado * 1440;
+
+        horasRet = ("00"+ Integer.toString(horasCalculado));
         horasRet = horasRet.substring(horasRet.length()-2,horasRet.length());
 
-        minutosRet = ("00"+ Integer.toString(minutosCalculos));
+        minutosRet = ("00"+ Integer.toString(minutosCalculado));
         minutosRet = minutosRet.substring(minutosRet.length()-2,minutosRet.length());
 
         return horasRet + ":" + minutosRet;
@@ -92,7 +101,7 @@ public class Util {
         int minutosCalculados;
         long milliSecondsElapsed = dataFinal.getTime() - dataInicial.getTime();
 
-        minutosCalculados = (int) TimeUnit.MINUTES.convert(milliSecondsElapsed, TimeUnit.MILLISECONDS);
+        minutosCalculados = (int)(milliSecondsElapsed / 60000);
 
         return minutosCalculados;
     }
@@ -312,7 +321,7 @@ public class Util {
         return argsIn.toString();
     }
 
-    public static String calcularTempoDadosUso(Date dataBaseInicial, Date dataBaseFinal, List<DataInicialFinal> dataInicialFinals){
+    public static int calcularTempoDadosUso(Date dataBaseInicial, Date dataBaseFinal, List<DataInicialFinal> dataInicialFinals){
         int minutosTotais = 0;
 
         for (DataInicialFinal dIF: dataInicialFinals) {
@@ -322,13 +331,17 @@ public class Util {
                 minutosTotais += calcularMinutosDeDuasDatas(dIF.getDataInicial(), calcularUltimaDataAtual(dataBaseInicial));
             }else if (formatarDataPara(dataBaseFinal) == formatarDataPara(dIF.getDataFinal())){
                 minutosTotais += calcularMinutosDeDuasDatas(calcularPrimeiraDataAtual(dataBaseFinal), dIF.getDataFinal());
+            }else if (formatarDataPara(dIF.getDataFinal()) == formatarDataPara(dataBaseFinal)){
+                minutosTotais += calcularMinutosDeDuasDatas(dIF.getDataInicial(), calcularUltimaDataAtual(dataBaseInicial));
+            }else if (formatarDataPara(dataBaseFinal) == formatarDataPara(dIF.getDataInicial())){
+                minutosTotais += calcularMinutosDeDuasDatas(calcularPrimeiraDataAtual(dataBaseFinal), dIF.getDataInicial());
             }
         }
 
-        return calcularHorasDeMinutos(minutosTotais);
+        return minutosTotais;
     }
 
-    public static String calcularTempoDadosUso(Date dataBaseInicial, Date dataBaseFinal, DataInicialFinal dIF){
+    public static int calcularTempoDadosUso(Date dataBaseInicial, Date dataBaseFinal, DataInicialFinal dIF){
         int minutosTotais = 0;
 
         if (formatarDataPara(dIF.getDataInicial()) >= formatarDataPara(dataBaseInicial) && Util.formatarDataPara(dIF.getDataFinal()) <= formatarDataPara(dataBaseFinal)){
@@ -337,9 +350,13 @@ public class Util {
             minutosTotais += calcularMinutosDeDuasDatas(dIF.getDataInicial(), calcularUltimaDataAtual(dataBaseInicial));
         }else if (formatarDataPara(dataBaseFinal) == formatarDataPara(dIF.getDataFinal())){
             minutosTotais += calcularMinutosDeDuasDatas(calcularPrimeiraDataAtual(dataBaseFinal), dIF.getDataFinal());
+        }else if (formatarDataPara(dIF.getDataFinal()) == formatarDataPara(dataBaseFinal)){
+            minutosTotais += calcularMinutosDeDuasDatas(dIF.getDataInicial(), calcularUltimaDataAtual(dataBaseInicial));
+        }else if (formatarDataPara(dataBaseFinal) == formatarDataPara(dIF.getDataInicial())){
+            minutosTotais += calcularMinutosDeDuasDatas(calcularPrimeiraDataAtual(dataBaseFinal), dIF.getDataInicial());
         }
 
-        return calcularHorasDeMinutos(minutosTotais);
+        return minutosTotais;
     }
 
     public static int calcularChecagemSistema(List<ChecagemSistema> checagemSistemas){
@@ -353,22 +370,53 @@ public class Util {
     }
 
     public static String calcularDiaHoraMinutiDeMinutos(int minutos){
-        int diasCalculado, horasCalculado, minutosCalculado;
-        String mensagemDiasCalculado, mensagemHorasCalculado, mensagemminutosCalculado, mensagem;
+        int diasCalculado, horasCalculado, minutosCalculado, minutosRestantes;
+        String mensagemDiasCalculado, mensagemHorasCalculado, mensagemMinutosCalculado, mensagem;
 
-        diasCalculado = minutos / (24 * 60);
-        horasCalculado = (minutos - (diasCalculado * 24 * 60)) / 60;
-        minutosCalculado = minutos - ((diasCalculado * 24 * 60) + (horasCalculado * 60));
+        minutosRestantes = minutos;
+
+        diasCalculado = minutosRestantes / 1440;
+        minutosRestantes = minutosRestantes - (diasCalculado * 1440);
+
+        horasCalculado =  minutosRestantes / 60;
+        minutosRestantes = minutosRestantes - (horasCalculado * 60);
+
+        minutosCalculado = minutosRestantes;
 
         mensagemDiasCalculado    = diasCalculado    > 0 ? diasCalculado    + " dia"    + (diasCalculado    > 1 ? "s" : "") : "";
         mensagemHorasCalculado   = horasCalculado   > 0 ? horasCalculado   + " hora"   + (horasCalculado   > 1 ? "s" : "") : "";
-        mensagemminutosCalculado = minutosCalculado > 0 ? minutosCalculado + " minuto" + (minutosCalculado > 1 ? "s" : "") : "";
+        mensagemMinutosCalculado = minutosCalculado > 0 ? minutosCalculado + " minuto" + (minutosCalculado > 1 ? "s" : "") : "";
 
         mensagem = mensagemDiasCalculado;
         mensagem += !mensagem.isEmpty() ? (!mensagemHorasCalculado.isEmpty() ? " e " + mensagemHorasCalculado : "") : mensagemHorasCalculado;
-        mensagem += !mensagem.isEmpty() ? (!mensagemminutosCalculado.isEmpty() ? " e " + mensagemminutosCalculado : "") : mensagemminutosCalculado;
+        mensagem += !mensagem.isEmpty() ? (!mensagemMinutosCalculado.isEmpty() ? " e " + mensagemMinutosCalculado : "") : mensagemMinutosCalculado;
 
         return mensagem;
     }
+
+    public static Date voltarDiaData(Date date){
+        return decrementar(date, 1);
+    }
+
+    public static Date voltarSemanaData(Date date){
+        return decrementar(date, 7);
+    }
+
+    public static Date voltarMesData(Date date){
+        return decrementar(date, 30);
+    }
+
+    public static Date decrementar(Date data, int dias) {
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.setTime(data);
+
+        calendar.add(Calendar.DAY_OF_MONTH, -dias);
+
+        data = calendar.getTime();
+
+        return data;
+    }
+
 
 }

@@ -18,8 +18,8 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
 
     private Context context;
 
-    public TabsAdapter(FragmentManager fm, Context context) {
-        super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+    public TabsAdapter(FragmentManager fragmentManager, Context context) {
+        super(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         this.context = context;
     }
 
@@ -29,15 +29,12 @@ public class TabsAdapter extends FragmentStatePagerAdapter {
 
         switch (position){
             case 0:
-                Toast.makeText(context, "CRIADO DADOS USO", Toast.LENGTH_SHORT).show();
                 fragment = new TableFragment(context);
                 break;
             case 1:
-                Toast.makeText(context, "CRIADO GRAFICOS", Toast.LENGTH_SHORT).show();
                 fragment = new GraficosFragment(context);
                 break;
             case 2:
-                Toast.makeText(context, "CRIADO NOTIFICACOES", Toast.LENGTH_SHORT).show();
                 fragment = new NotificationFragment(context);
                 break;
             default:

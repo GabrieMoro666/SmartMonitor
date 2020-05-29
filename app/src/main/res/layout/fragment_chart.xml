@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.navigationDrawer.principal.tabsFragments.TableFragment" >
+    tools:context=".view.navigationDrawer.principal.tabsFragments.GraficosFragment">
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:orientation="horizontal"
@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <Spinner
-            android:id="@+id/spinnerPeriodoTable"
+            android:id="@+id/spinnerPeriodoChart"
             android:layout_width="150dp"
             android:layout_height="wrap_content" />
 
@@ -31,14 +31,14 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textViewUsoDispositivioTable"
+                    android:id="@+id/textViewUsoDispositivioChart"
                     android:layout_width="135dp"
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:text="Uso do dispositivo:" />
 
                 <EditText
-                    android:id="@+id/editTextUsoDispositivoTable"
+                    android:id="@+id/editTextUsoDispositivoChart"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -53,14 +53,14 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textViewChecagemTable"
+                    android:id="@+id/textViewChecagemChart"
                     android:layout_width="135dp"
                     android:layout_height="wrap_content"
                     android:gravity="right"
                     android:text="Checagem:" />
 
                 <EditText
-                    android:id="@+id/editTextChecagemTable"
+                    android:id="@+id/editTextChecagemChart"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -68,37 +68,11 @@
                     android:textSize="10sp" />
             </LinearLayout>
         </LinearLayout>
+
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/linearLayout2"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
-
-        <TextView
-            android:id="@+id/textViewAplicativoNomeTable"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Aplicativo" />
-
-        <TextView
-            android:id="@+id/textViewTempoUsoTable"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Tempo de uso" />
-    </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewTable"
+    <com.anychart.AnyChartView
+        android:id="@+id/anyChartView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
@@ -107,7 +81,9 @@
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/linearLayout4"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+    </com.anychart.AnyChartView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

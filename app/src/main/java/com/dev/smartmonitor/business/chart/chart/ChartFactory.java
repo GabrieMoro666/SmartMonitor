@@ -1,10 +1,20 @@
-package com.dev.smartmonitor.business.table.table;
+package com.dev.smartmonitor.business.chart.chart;
 
 import android.app.Activity;
 import android.content.Context;
 
+import com.anychart.AnyChart;
+import com.anychart.AnyChartView;
+import com.anychart.chart.common.dataentry.DataEntry;
+import com.anychart.chart.common.dataentry.ValueDataEntry;
+import com.anychart.charts.Cartesian;
+import com.anychart.core.cartesian.series.Column;
+import com.anychart.enums.Anchor;
+import com.anychart.enums.HoverMode;
+import com.anychart.enums.Position;
+import com.anychart.enums.TooltipPositionMode;
+
 import com.dev.smartmonitor.business.basic.basic.BasicFactoryCreator;
-import com.dev.smartmonitor.business.table.model.RowTable;
 import com.dev.smartmonitor.persistence.dao.model.Aplicativo;
 import com.dev.smartmonitor.persistence.dao.model.ChecagemSistema;
 import com.dev.smartmonitor.persistence.dao.model.DadosUsoAplicativo;
@@ -18,63 +28,98 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-public class TableFactory implements ITableFactory {
+public class ChartFactory implements IChartFactory{
+
     private Context context;
 
-    public TableFactory(Context context){
+    public ChartFactory(Context context){
         this.context = context;
     }
 
-    @Override
-    public List<RowTable> construirTableDia(){
+    private List<DataEntry> construirDataEntryDia(){
         Date dataInicial, dataFinal;
 
         dataFinal = Util.calcularUltimaDataAtual();
         dataInicial = Util.calcularPrimeiraDataAtual(Util.voltarDiaData(dataFinal));
 
-        return construirTable(dataInicial, dataFinal);
+        return constrirDataEntry(dataInicial, dataFinal);
     }
 
-    @Override
-    public List<RowTable> construirTableSemana(){
+    private List<DataEntry> construirDataEntrySemana(){
         Date dataInicial, dataFinal;
 
         dataFinal = Util.calcularUltimaDataAtual();
-        dataInicial = Util.calcularPrimeiraDataAtual(Util.voltarSemanaData(dataFinal));
+        dataInicial = Util.calcularPrimeiraDataAtual(Util.voltarDiaData(dataFinal));
 
-        return construirTable(dataInicial, dataFinal);
+        return constrirDataEntry(dataInicial, dataFinal);
     }
 
-    @Override
-    public List<RowTable> construirTableMes(){
+    private List<DataEntry> construirDataEntryMes(){
         Date dataInicial, dataFinal;
 
         dataFinal = Util.calcularUltimaDataAtual();
-        dataInicial = Util.calcularPrimeiraDataAtual(Util.voltarMesData(dataFinal));
+        dataInicial = Util.calcularPrimeiraDataAtual(Util.voltarDiaData(dataFinal));
 
-        return construirTable(dataInicial, dataFinal);
+        return constrirDataEntry(dataInicial, dataFinal);
     }
 
-    private List<RowTable> construirTable(Date dataInicial, Date dataFinal){
+    private List<DataEntry> constrirDataEntry(Date dataInicial, Date dataFinal){
+        List<DataEntry> dataEntries = new LinkedList<>();
         BasicFactoryCreator basicFactory = new BasicFactoryCreator();
         List<Aplicativo> aplicativos = new LinkedList<>();
         List<DadosUsoAplicativo> dadosUsoAplicativos = new LinkedList<>();
-        List<RowTable> rowTables = new LinkedList<>();
-        RowTable rowTable;
+        ValueDataEntry valueDataEntry;
+        int tempoCalculado;
 
         aplicativos = basicFactory.getFactry(context).createSelectFactory().buscarAplicativoAll("");
 
         for (Aplicativo a : aplicativos) {
             dadosUsoAplicativos = basicFactory.getFactry(context).createSelectFactory().buscarDadosUsoAplicativoByDataIdAplicativo(dataInicial, dataFinal, a.getId());
 
-            rowTable = new RowTable();
-            rowTable.setNomeAplicativo(a.getNome());
-            rowTable.setTempoUso(Util.calcularDiaHoraMinutiDeMinutos(Util.calcularTempoDadosUso(dataInicial, dataFinal, (List<DataInicialFinal>) ((List<? extends DataInicialFinal>) dadosUsoAplicativos))));
+            valueDataEntry = new ValueDataEntry(a.getNome(), Util.calcularTempoDadosUso(dataInicial, dataFinal, (List<DataInicialFinal>) ((List<? extends DataInicialFinal>) dadosUsoAplicativos)));
 
-            rowTables.add(rowTable);
+            dataEntries.add(valueDataEntry);
         }
 
-        return rowTables;
+        return dataEntries;
+    }
+
+    @Override
+    public Cartesian construirGraficoDeColunasDia(){
+        return construirGraficoDeColunas(construirDataEntryDia());
+    }
+
+    @Override
+    public Cartesian construirGraficoDeColunasSemana(){
+        return construirGraficoDeColunas(construirDataEntrySemana());
+    }
+
+    @Override
+    public Cartesian construirGraficoDeColunasMes(){
+        return construirGraficoDeColunas(construirDataEntryMes());
+    }
+
+    private Cartesian construirGraficoDeColunas(List<DataEntry> dataEntries){
+        Cartesian cartesian = AnyChart.column();
+
+        Column column = cartesian.column(dataEntries);
+
+        column.tooltip().titleFormat("{%X}").position(Position.CENTER_BOTTOM).anchor(Anchor.CENTER_BOTTOM).offsetX(0d).offsetY(5d).format("{%Value}{groupsSeparator: }");
+
+        cartesian.animation(true);
+        cartesian.title("Tempo de utilização de aplicativos");
+
+        cartesian.yScale().minimum(0d);
+
+        cartesian.yAxis(0).labels().format("{%Value}{groupsSeparator: }");
+
+        cartesian.tooltip().positionMode(TooltipPositionMode.POINT);
+        cartesian.interactivity().hoverMode(HoverMode.BY_X);
+
+        cartesian.xAxis(0).title("Aplicativos");
+        cartesian.yAxis(0).title("Tempo de Uso");
+
+        return cartesian;
     }
 
     @Override
