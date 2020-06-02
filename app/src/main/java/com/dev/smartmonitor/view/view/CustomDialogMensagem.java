@@ -26,7 +26,7 @@ public class CustomDialogMensagem extends Dialog implements View.OnClickListener
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_custon_dialog_mensagem);
+        setContentView(R.layout.layout_dialog_mensagem);
 
         init();
     }

@@ -67,11 +67,13 @@ public class TableFactory implements ITableFactory {
         for (Aplicativo a : aplicativos) {
             dadosUsoAplicativos = basicFactory.getFactry(context).createSelectFactory().buscarDadosUsoAplicativoByDataIdAplicativo(dataInicial, dataFinal, a.getId());
 
-            rowTable = new RowTable();
-            rowTable.setNomeAplicativo(a.getNome());
-            rowTable.setTempoUso(Util.calcularDiaHoraMinutiDeMinutos(Util.calcularTempoDadosUso(dataInicial, dataFinal, (List<DataInicialFinal>) ((List<? extends DataInicialFinal>) dadosUsoAplicativos))));
+            if (dadosUsoAplicativos.size() > 0){
+                rowTable = new RowTable();
+                rowTable.setNomeAplicativo(a.getNome());
+                rowTable.setTempoUso(Util.calcularDiaHoraMinutiDeMinutos(Util.calcularTempoDadosUso(dataInicial, dataFinal, (List<DataInicialFinal>) ((List<? extends DataInicialFinal>) dadosUsoAplicativos))));
 
-            rowTables.add(rowTable);
+                rowTables.add(rowTable);
+            }
         }
 
         return rowTables;

@@ -1,4 +1,4 @@
-package com.dev.smartmonitor.business.chart.chart;
+package com.dev.smartmonitor.business.chart;
 
 import android.content.Context;
 

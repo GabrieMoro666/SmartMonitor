@@ -1,10 +1,8 @@
-package com.dev.smartmonitor.business.chart.chart;
+package com.dev.smartmonitor.business.chart;
 
-import android.app.Activity;
 import android.content.Context;
 
 import com.anychart.AnyChart;
-import com.anychart.AnyChartView;
 import com.anychart.chart.common.dataentry.DataEntry;
 import com.anychart.chart.common.dataentry.ValueDataEntry;
 import com.anychart.charts.Cartesian;
@@ -22,13 +20,12 @@ import com.dev.smartmonitor.persistence.dao.model.DadosUsoSistema;
 import com.dev.smartmonitor.persistence.dao.model.DataInicialFinal;
 import com.dev.smartmonitor.persistence.dao.model.Sistema;
 import com.dev.smartmonitor.util.Util;
-import com.dev.smartmonitor.view.view.CustomDialogMensagem;
 
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ChartFactory implements IChartFactory{
+public class ChartFactory implements IChartFactory {
 
     private Context context;
 
@@ -69,16 +66,17 @@ public class ChartFactory implements IChartFactory{
         List<Aplicativo> aplicativos = new LinkedList<>();
         List<DadosUsoAplicativo> dadosUsoAplicativos = new LinkedList<>();
         ValueDataEntry valueDataEntry;
-        int tempoCalculado;
 
         aplicativos = basicFactory.getFactry(context).createSelectFactory().buscarAplicativoAll("");
 
         for (Aplicativo a : aplicativos) {
             dadosUsoAplicativos = basicFactory.getFactry(context).createSelectFactory().buscarDadosUsoAplicativoByDataIdAplicativo(dataInicial, dataFinal, a.getId());
 
-            valueDataEntry = new ValueDataEntry(a.getNome(), Util.calcularTempoDadosUso(dataInicial, dataFinal, (List<DataInicialFinal>) ((List<? extends DataInicialFinal>) dadosUsoAplicativos)) / 60);
+            if (dadosUsoAplicativos.size() > 0){
+                valueDataEntry = new ValueDataEntry(a.getNome(), Util.calcularTempoDadosUso(dataInicial, dataFinal, (List<DataInicialFinal>) ((List<? extends DataInicialFinal>) dadosUsoAplicativos)) / 60);
 
-            dataEntries.add(valueDataEntry);
+                dataEntries.add(valueDataEntry);
+            }
         }
 
         return dataEntries;

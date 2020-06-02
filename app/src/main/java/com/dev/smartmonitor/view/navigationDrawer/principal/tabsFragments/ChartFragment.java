@@ -13,10 +13,9 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import com.anychart.AnyChart;
 import com.anychart.AnyChartView;
 import com.dev.smartmonitor.R;
-import com.dev.smartmonitor.business.chart.chart.ChartFactoryCreator;
+import com.dev.smartmonitor.business.chart.ChartFactoryCreator;
 
 
 public class ChartFragment extends Fragment {

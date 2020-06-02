@@ -1,4 +1,4 @@
-package com.dev.smartmonitor.business.chart.chart;
+package com.dev.smartmonitor.business.chart;
 
 import com.anychart.charts.Cartesian;
 

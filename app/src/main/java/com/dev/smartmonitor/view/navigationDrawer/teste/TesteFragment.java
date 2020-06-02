@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.dev.smartmonitor.R;
+import com.dev.smartmonitor.business.aplicativoAnalise.aplicativoAnalise.AplicativoAnaliseFactoryCreator;
+import com.dev.smartmonitor.business.aplicativoAnalise.model.AplicativoAnalise;
 import com.dev.smartmonitor.business.basic.basic.BasicFactoryCreator;
 import com.dev.smartmonitor.persistence.dao.model.Aplicativo;
 import com.dev.smartmonitor.persistence.dao.model.ChecagemSistema;
@@ -88,6 +90,12 @@ public class TesteFragment extends Fragment {
             populateDadosUsoSistema();
             popularNotificacaoAplicativo();
             popularNotificacaoSistema();
+
+//            AplicativoAnaliseFactoryCreator aplicativoAnaliseFactory = new AplicativoAnaliseFactoryCreator();
+//            List<String> app = aplicativoAnaliseFactory.getFactry(ContextSingleton.getContext()).buscarAplicativosDispositivo();
+//
+//            customDialogMensagem = new CustomDialogMensagem((Activity) ContextSingleton.getContext(), "Hell " + app.size());
+//            customDialogMensagem.show();
 
 //            customDialogMensagem = new CustomDialogMensagem((Activity) ContextSingleton.getContext(), "Dia hj " + new SimpleDateFormat("dd/MM/yyyy").format(Util.calcularDataAtual()) + " Dia -30 " + new SimpleDateFormat("dd/MM/yyyy").format(Util.voltarMesData(Util.calcularDataAtual())));
 //            customDialogMensagem.show();

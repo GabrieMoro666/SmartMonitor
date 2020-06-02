@@ -24,7 +24,7 @@ public class AdapterTable extends RecyclerView.Adapter{
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View recycleViewItem;
 
-        recycleViewItem = inflater.inflate(R.layout.activity_adapter_table_row, parent, false);
+        recycleViewItem = inflater.inflate(R.layout.layout_adapter_table_row, parent, false);
         return new RowTableHolder(recycleViewItem);
     }
 
