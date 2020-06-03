@@ -11,10 +11,14 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.dev.smartmonitor.business.basic.basic.BasicFactoryCreator;
 import com.dev.smartmonitor.business.configuracao.configuracao.ConfiguracaoFactoryCreator;
+import com.dev.smartmonitor.persistence.dao.model.Aplicativo;
+import com.dev.smartmonitor.persistence.dao.model.ConfiguracaoTempoAplicativo;
 import com.dev.smartmonitor.persistence.dao.model.ConfiguracaoTempoSistema;
 import com.dev.smartmonitor.util.ContextSingleton;
 import com.dev.smartmonitor.R;
+import com.dev.smartmonitor.util.Util;
 import com.dev.smartmonitor.view.view.CustomDialogMensagem;
 import com.dev.smartmonitor.view.view.CustomDialogTimePicker;
 
@@ -25,6 +29,8 @@ public class ConfiguracaoSistemaFragment extends Fragment {
     private EditText editTextTempoContinuo;
     private ConfiguracaoFactoryCreator configuracaoFactory;
     private ConfiguracaoTempoSistema configuracaoTempoSistema;
+    private CustomDialogMensagem customDialogMensagem;
+    private BasicFactoryCreator basicFactory;
 
     public ConfiguracaoSistemaFragment(){
         this.context = ContextSingleton.getContext();
@@ -53,7 +59,58 @@ public class ConfiguracaoSistemaFragment extends Fragment {
 
         @Override
         public void applyReturnTimePicker(String horaMinuto) {
+            if (verificarTempo(horaMinuto)) {
+                editTextTempoDiario.setText(horaMinuto);
+                configuracaoTempoSistema.setTempoDiario(horaMinuto);
+                configuracaoFactory.getFactryConfiguracaoSistema(context).updateConfiguracaoSitema(configuracaoTempoSistema.getIdSistema(), configuracaoTempoSistema.getTempoDiario(), configuracaoTempoSistema.getTempoContinuo());
+            }
+        }
 
+        public boolean verificarTempo(String tempoDiario){
+            Aplicativo aplicativo;
+
+            if (Util.calcularMinutosDeHoras(editTextTempoContinuo.getText().toString()) != 0 && Util.calcularMinutosDeHoras(tempoDiario) != 0) {
+                if (Util.calcularMinutosDeHoras(tempoDiario) < Util.calcularMinutosDeHoras(editTextTempoContinuo.getText().toString())){
+                    customDialogMensagem = new CustomDialogMensagem((Activity) context, "Valor inválido, deve ser maior ou igual ao tempo continuo!");
+                    customDialogMensagem.show();
+                    return false;
+                } else {
+                    if ((aplicativo = verificarTempoAplicativos(tempoDiario, editTextTempoContinuo.getText().toString())) != null){
+                        customDialogMensagem = new CustomDialogMensagem((Activity) context, "Valor inválido, verifique a configuração do aplicativo " + aplicativo.getNome()+ "!");
+                        customDialogMensagem.show();
+                        return false;
+                    }
+                    return true;
+                }
+            } else {
+                if ((aplicativo = verificarTempoAplicativos(tempoDiario, editTextTempoContinuo.getText().toString())) != null){
+                    customDialogMensagem = new CustomDialogMensagem((Activity) context, "Valor inválido, verifique a configuração do aplicativo " + aplicativo.getNome()+ "!");
+                    customDialogMensagem.show();
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        public Aplicativo verificarTempoAplicativos(String tempoDiario, String tempoContinuo){
+            ConfiguracaoTempoAplicativo configuracaoTempoAplicativo = null;
+            Aplicativo aplicativo = null;
+
+            if (Util.calcularMinutosDeHoras(tempoDiario) != 0) {
+                configuracaoTempoAplicativo = configuracaoFactory.getFactryConfiguracaoSistema(context).verificarConfiguracaoAplicativosTempoDiario(tempoDiario);
+            }
+
+            if (configuracaoTempoAplicativo == null) {
+                if (Util.calcularMinutosDeHoras(tempoContinuo) != 0) {
+                    configuracaoTempoAplicativo = configuracaoFactory.getFactryConfiguracaoSistema(context).verificarConfiguracaoAplicativosTempoContinuo(tempoContinuo);
+                }
+            }
+
+            if (configuracaoTempoAplicativo != null) {
+                aplicativo = basicFactory.getFactry(context).createSelectFactory().buscarAplicativoByIdAplicativo(configuracaoTempoAplicativo.getIdAplicativo());
+            }
+
+            return aplicativo;
         }
     }
 
@@ -72,7 +129,58 @@ public class ConfiguracaoSistemaFragment extends Fragment {
 
         @Override
         public void applyReturnTimePicker(String horaMinuto) {
+            if (verificarTempo(horaMinuto)) {
+                editTextTempoContinuo.setText(horaMinuto);
+                configuracaoTempoSistema.setTempoContinuo(horaMinuto);
+                configuracaoFactory.getFactryConfiguracaoSistema(context).updateConfiguracaoSitema(configuracaoTempoSistema.getIdSistema(), configuracaoTempoSistema.getTempoDiario(), configuracaoTempoSistema.getTempoContinuo());
+            }
+        }
 
+        public boolean verificarTempo(String tempoContinuo) {
+            Aplicativo aplicativo;
+
+            if (Util.calcularMinutosDeHoras(editTextTempoDiario.getText().toString()) != 0 && Util.calcularMinutosDeHoras(tempoContinuo) != 0) {
+                if (Util.calcularMinutosDeHoras(tempoContinuo) > Util.calcularMinutosDeHoras(editTextTempoDiario.getText().toString())) {
+                    customDialogMensagem = new CustomDialogMensagem((Activity) context, "Valor inválido, deve ser menor ou igual ao tempo diario!");
+                    customDialogMensagem.show();
+                    return false;
+                } else {
+                    if ((aplicativo = verificarTempoAplicativos(editTextTempoDiario.getText().toString(), tempoContinuo)) != null){
+                        customDialogMensagem = new CustomDialogMensagem((Activity) context, "Valor inválido, verifique a configuração do aplicativo " + aplicativo.getNome()+ "!");
+                        customDialogMensagem.show();
+                        return false;
+                    }
+                    return true;
+                }
+            } else {
+                if ((aplicativo = verificarTempoAplicativos(editTextTempoDiario.getText().toString(), tempoContinuo)) != null){
+                    customDialogMensagem = new CustomDialogMensagem((Activity) context, "Valor inválido, verifique a configuração do aplicativo " + aplicativo.getNome()+ "!");
+                    customDialogMensagem.show();
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        public Aplicativo verificarTempoAplicativos(String tempoDiario, String tempoContinuo){
+            ConfiguracaoTempoAplicativo configuracaoTempoAplicativo = null;
+            Aplicativo aplicativo = null;
+
+            if (Util.calcularMinutosDeHoras(tempoDiario) != 0) {
+                configuracaoTempoAplicativo = configuracaoFactory.getFactryConfiguracaoSistema(context).verificarConfiguracaoAplicativosTempoDiario(tempoDiario);
+            }
+
+            if (configuracaoTempoAplicativo == null) {
+                if (Util.calcularMinutosDeHoras(tempoContinuo) != 0) {
+                    configuracaoTempoAplicativo = configuracaoFactory.getFactryConfiguracaoSistema(context).verificarConfiguracaoAplicativosTempoContinuo(tempoContinuo);
+                }
+            }
+
+            if (configuracaoTempoAplicativo != null) {
+                aplicativo = basicFactory.getFactry(context).createSelectFactory().buscarAplicativoByIdAplicativo(configuracaoTempoAplicativo.getIdAplicativo());
+            }
+
+            return aplicativo;
         }
     }
 
@@ -94,6 +202,8 @@ public class ConfiguracaoSistemaFragment extends Fragment {
 
         editTextTempoDiario.setText(configuracaoTempoSistema.getTempoDiario());
         editTextTempoContinuo.setText(configuracaoTempoSistema.getTempoContinuo());
+
+        basicFactory = new BasicFactoryCreator();
     }
 
 }

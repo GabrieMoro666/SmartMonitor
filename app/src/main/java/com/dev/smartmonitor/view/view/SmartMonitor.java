@@ -5,6 +5,7 @@ import android.view.Menu;
 
 import com.dev.smartmonitor.util.ContextSingleton;
 import com.dev.smartmonitor.R;
+import com.dev.smartmonitor.util.Instalacao;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;
@@ -40,6 +41,8 @@ public class SmartMonitor extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        Instalacao.criarSistema(SmartMonitor.this);
     }
 
     @Override

@@ -122,6 +122,13 @@ public class AdapterConfiguracaoAplicativo extends RecyclerView.Adapter {
                         return true;
                     }
                 } else {
+                    if (Util.calcularMinutosDeHoras(configuracaoTempoSistema.getTempoDiario()) != 0) {
+                        if (Util.calcularMinutosDeHoras(tempoDiario) > Util.calcularMinutosDeHoras(configuracaoTempoSistema.getTempoDiario())) {
+                            customDialogMensagem = new CustomDialogMensagem((Activity) context, "Valor inválido, deve ser menor ou igual ao tempo diario do sistema!");
+                            customDialogMensagem.show();
+                            return false;
+                        }
+                    }
                     return true;
                 }
             }
@@ -173,6 +180,13 @@ public class AdapterConfiguracaoAplicativo extends RecyclerView.Adapter {
                         return true;
                     }
                 } else {
+                    if (Util.calcularMinutosDeHoras(configuracaoTempoSistema.getTempoContinuo()) != 0) {
+                        if (Util.calcularMinutosDeHoras(tempoContinuo) > Util.calcularMinutosDeHoras(configuracaoTempoSistema.getTempoContinuo())) {
+                            customDialogMensagem = new CustomDialogMensagem((Activity) context, "Valor inválido, deve ser menor ou igual ao tempo continuo do sistema!");
+                            customDialogMensagem.show();
+                            return false;
+                        }
+                    }
                     return true;
                 }
             }

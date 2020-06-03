@@ -13,6 +13,8 @@ import com.dev.smartmonitor.persistence.dao.db.feedReader.FeedReaderDadosUsoSist
 import com.dev.smartmonitor.persistence.dao.db.feedReader.FeedReaderNotificacaoAplicativo;
 import com.dev.smartmonitor.persistence.dao.db.feedReader.FeedReaderNotificacaoSistema;
 import com.dev.smartmonitor.persistence.dao.db.feedReader.FeedReaderSistema;
+import com.dev.smartmonitor.util.ContextSingleton;
+import com.dev.smartmonitor.util.Instalacao;
 
 public class FeedReaderDbHelper extends SQLiteOpenHelper {
     Context context;
