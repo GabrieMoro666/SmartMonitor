@@ -1,6 +1,7 @@
 package com.dev.smartmonitor.view.navigationDrawer.teste;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -15,6 +16,7 @@ import com.dev.smartmonitor.R;
 import com.dev.smartmonitor.business.aplicativoAnalise.aplicativoAnalise.AplicativoAnaliseFactoryCreator;
 import com.dev.smartmonitor.business.aplicativoAnalise.model.AplicativoAnalise;
 import com.dev.smartmonitor.business.basic.basic.BasicFactoryCreator;
+import com.dev.smartmonitor.business.notification.emitir.EmitirNotificacaoFactoryCreator;
 import com.dev.smartmonitor.persistence.dao.model.Aplicativo;
 import com.dev.smartmonitor.persistence.dao.model.ChecagemSistema;
 import com.dev.smartmonitor.persistence.dao.model.ConfiguracaoTempoAplicativo;
@@ -81,15 +83,18 @@ public class TesteFragment extends Fragment {
 
             basicFactory = new BasicFactoryCreator();
 
-            popularSistema();
-            pupularChecagemSistema();
-            popularAplicativo();
-            popularConfiguracaoTempoAplicativo();
-            popularConfiguracaoTempoSistema();
-            populateDadosUsoAplicativo();
-            populateDadosUsoSistema();
-            popularNotificacaoAplicativo();
-            popularNotificacaoSistema();
+//            popularSistema();
+//            pupularChecagemSistema();
+//            popularAplicativo();
+//            popularConfiguracaoTempoAplicativo();
+//            popularConfiguracaoTempoSistema();
+//            populateDadosUsoAplicativo();
+//            populateDadosUsoSistema();
+//            popularNotificacaoAplicativo();
+//            popularNotificacaoSistema();
+
+            EmitirNotificacaoFactoryCreator emitirNotificacaoFactory = new EmitirNotificacaoFactoryCreator();
+            emitirNotificacaoFactory.getFactry(ContextSingleton.getContext()).teste();
 
 //            AplicativoAnaliseFactoryCreator aplicativoAnaliseFactory = new AplicativoAnaliseFactoryCreator();
 //            List<String> app = aplicativoAnaliseFactory.getFactry(ContextSingleton.getContext()).buscarAplicativosDispositivo();
