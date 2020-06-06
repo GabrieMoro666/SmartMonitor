@@ -94,7 +94,9 @@ public class TesteFragment extends Fragment {
 //            popularNotificacaoSistema();
 
             EmitirNotificacaoFactoryCreator emitirNotificacaoFactory = new EmitirNotificacaoFactoryCreator();
-            emitirNotificacaoFactory.getFactry(ContextSingleton.getContext()).teste();
+            emitirNotificacaoFactory.getFactry(ContextSingleton.getContext()).emitirNotificacaoSistema(1L, 1L, "Sistema", "Gian Gay 1");
+            emitirNotificacaoFactory.getFactry(ContextSingleton.getContext()).emitirNotificacaoAplicativo(1L, 1L, "Aplicativo", "Gian Gay 2");
+            emitirNotificacaoFactory.getFactry(ContextSingleton.getContext()).emitirNotificacaoAplicativo(2L, 1L, "Aplicativo", "Gian Gay 3");
 
 //            AplicativoAnaliseFactoryCreator aplicativoAnaliseFactory = new AplicativoAnaliseFactoryCreator();
 //            List<String> app = aplicativoAnaliseFactory.getFactry(ContextSingleton.getContext()).buscarAplicativosDispositivo();

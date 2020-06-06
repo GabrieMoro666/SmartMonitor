@@ -71,10 +71,14 @@ public interface ISelectFactory {
 
     public List<NotificacaoAplicativo> buscarNotificacaoAplicativoByData(String[] status, Date dataInicial, Date dataFinal);
 
+    public NotificacaoAplicativo buscarNotificacaoAplicativoByIdAplicativoData(long idAplicativo, Date data);
+
     public NotificacaoSistema buscarNotificacaoSistemaById(long id, long idSistema, long idConfiguracao);
 
     public List<NotificacaoSistema> buscarNotificacaoSistemaAll(String[] status);
 
     public List<NotificacaoSistema> buscarNotificacaoSistemaByData(String[] status, Date dataInicial, Date dataFinal);
+
+    public NotificacaoSistema buscarNotificacaoSistemaByIdSistemaData(long idSistema, Date data);
 
 }

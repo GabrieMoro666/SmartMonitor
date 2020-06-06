@@ -622,6 +622,31 @@ public class SelectFactory implements ISelectFactory {
     }
 
     @Override
+    public NotificacaoAplicativo buscarNotificacaoAplicativoByIdAplicativoData(long idAplicativo, Date data) {
+        List<NotificacaoAplicativo>  naAll = new LinkedList<>();
+        DAOFactoryCreator daoFactory = new DAOFactoryCreator();
+
+        String[] projection = {
+                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID,
+                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO,
+                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID_CONFIGURACAO,
+                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_DATA,
+                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_TITULO,
+                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_DESCRICAO,
+                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_STATUS
+        };
+
+        String selection =  FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO + " = ? AND " +
+                            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_DATA          + " = ?";
+        String[] selectionArgs = { Long.toString(idAplicativo), Long.toString(Util.formatarDataPara(data)) };
+
+
+        naAll = daoFactory.getFactry(context).createNotificacaoAplicativo().buscar(projection,  selection, selectionArgs, null, null, null);
+
+        return (naAll.size() > 0 ? naAll.get(0) : null);
+    }
+
+    @Override
     public NotificacaoSistema buscarNotificacaoSistemaById(long id, long idSistema, long idConfiguracao) {
         List<NotificacaoSistema>  nsAll;
         DAOFactoryCreator daoFactory = new DAOFactoryCreator();
@@ -695,6 +720,30 @@ public class SelectFactory implements ISelectFactory {
         nsAll = daoFactory.getFactry(context).createNotificacaoSistema().buscar(projection,  selection, selectionArgs, null, null, null);
 
         return nsAll;
+    }
+
+    @Override
+    public NotificacaoSistema buscarNotificacaoSistemaByIdSistemaData(long idSistema, Date data) {
+        List<NotificacaoSistema>  nsAll = new LinkedList<>();
+        DAOFactoryCreator daoFactory = new DAOFactoryCreator();
+
+        String[] projection = {
+                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID,
+                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID_SISTEMA,
+                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID_CONFIGURACAO,
+                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_DATA,
+                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_TITULO,
+                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_DESCRICAO,
+                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_STATUS
+        };
+
+        String selection =  FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID_SISTEMA  + " = ? AND " +
+                            FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_DATA        + " = ? ";
+        String[] selectionArgs = { Long.toString(idSistema), Long.toString(Util.formatarDataPara(data)) };
+
+        nsAll = daoFactory.getFactry(context).createNotificacaoSistema().buscar(projection,  selection, selectionArgs, null, null, null);
+
+        return (nsAll.size() > 0 ? nsAll.get(0) : null);
     }
 
 }
