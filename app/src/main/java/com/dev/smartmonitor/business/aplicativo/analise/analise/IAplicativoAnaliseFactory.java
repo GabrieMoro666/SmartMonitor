@@ -1,6 +1,4 @@
-package com.dev.smartmonitor.business.aplicativoAnalise.aplicativoAnalise;
-
-import java.util.List;
+package com.dev.smartmonitor.business.aplicativo.analise.analise;
 
 public interface IAplicativoAnaliseFactory {
 

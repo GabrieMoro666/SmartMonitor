@@ -1,11 +1,11 @@
-package com.dev.smartmonitor.business.aplicativoAnalise.aplicativoAnalise;
+package com.dev.smartmonitor.business.aplicativo.analise.analise;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
-import com.dev.smartmonitor.business.aplicativoAnalise.model.AplicativoAnalise;
+import com.dev.smartmonitor.business.aplicativo.analise.model.AplicativoAnalise;
 import com.dev.smartmonitor.business.basic.basic.BasicFactoryCreator;
 import com.dev.smartmonitor.persistence.dao.model.Aplicativo;
 import com.dev.smartmonitor.persistence.dao.model.Sistema;

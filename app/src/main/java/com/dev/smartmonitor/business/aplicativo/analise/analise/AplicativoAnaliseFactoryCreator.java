@@ -1,4 +1,4 @@
-package com.dev.smartmonitor.business.aplicativoAnalise.aplicativoAnalise;
+package com.dev.smartmonitor.business.aplicativo.analise.analise;
 
 import android.content.Context;
 

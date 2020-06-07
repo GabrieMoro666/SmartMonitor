@@ -20,9 +20,8 @@ import com.dev.smartmonitor.util.Util;
 import com.dev.smartmonitor.view.view.CustomDialogMensagem;
 import com.dev.smartmonitor.view.view.SmartMonitor;
 
-import static com.dev.smartmonitor.util.Channel.CHANNEL_NOTIFICACAO_APLICATIVO;
-import static com.dev.smartmonitor.util.Channel.CHANNEL_NOTIFICACAO_SISTEMA;
-import static com.dev.smartmonitor.util.Channel.CHANNEL_NOTIFICACAO_SISTEMA;
+import static com.dev.smartmonitor.util.Channel.CHANNEL_NOTIFICACAO_ID_APLICATIVO;
+import static com.dev.smartmonitor.util.Channel.CHANNEL_NOTIFICACAO_ID_SISTEMA;
 
 public class EmitirNotificacaoFactory implements IEmitirNotificacaoFactory {
 
@@ -68,7 +67,7 @@ public class EmitirNotificacaoFactory implements IEmitirNotificacaoFactory {
 
             inserirNotificacao(notificacaoSistema);
 
-            emitirNotificacao(notificacaoSistema.getId(), titulo, descricao, CHANNEL_NOTIFICACAO_SISTEMA);
+            emitirNotificacao(notificacaoSistema.getId(), titulo, descricao, CHANNEL_NOTIFICACAO_ID_SISTEMA);
         }
     }
 
@@ -108,7 +107,7 @@ public class EmitirNotificacaoFactory implements IEmitirNotificacaoFactory {
 
             inserirNotificacao(notificacaoAplicativo);
 
-            emitirNotificacao(notificacaoAplicativo.getId(), titulo, descricao, CHANNEL_NOTIFICACAO_APLICATIVO);
+            emitirNotificacao(notificacaoAplicativo.getId(), titulo, descricao, CHANNEL_NOTIFICACAO_ID_APLICATIVO);
         }
     }
 

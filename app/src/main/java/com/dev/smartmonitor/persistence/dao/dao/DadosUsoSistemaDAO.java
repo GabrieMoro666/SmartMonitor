@@ -5,7 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.dev.smartmonitor.persistence.dao.db.dbHelper.FeedReaderDbHelper;
+import com.dev.smartmonitor.persistence.dao.db.helper.FeedReaderDbHelper;
 import com.dev.smartmonitor.persistence.dao.db.feedReader.FeedReaderDadosUsoSistema;
 import com.dev.smartmonitor.persistence.dao.idao.IDadosUsoSistemaDAO;
 import com.dev.smartmonitor.persistence.dao.model.DadosUsoSistema;

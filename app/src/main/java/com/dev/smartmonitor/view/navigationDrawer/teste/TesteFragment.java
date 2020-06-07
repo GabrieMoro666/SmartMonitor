@@ -1,7 +1,6 @@
 package com.dev.smartmonitor.view.navigationDrawer.teste;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,11 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.dev.smartmonitor.R;
-import com.dev.smartmonitor.business.aplicativoAnalise.aplicativoAnalise.AplicativoAnaliseFactoryCreator;
-import com.dev.smartmonitor.business.aplicativoAnalise.model.AplicativoAnalise;
 import com.dev.smartmonitor.business.basic.basic.BasicFactoryCreator;
 import com.dev.smartmonitor.business.notification.emitir.EmitirNotificacaoFactoryCreator;
 import com.dev.smartmonitor.persistence.dao.model.Aplicativo;
@@ -31,9 +27,7 @@ import com.dev.smartmonitor.util.ContextSingleton;
 import com.dev.smartmonitor.util.Util;
 import com.dev.smartmonitor.view.view.CustomDialogMensagem;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -95,6 +89,13 @@ public class TesteFragment extends Fragment {
 
             EmitirNotificacaoFactoryCreator emitirNotificacaoFactory = new EmitirNotificacaoFactoryCreator();
             emitirNotificacaoFactory.getFactry(ContextSingleton.getContext()).emitirNotificacaoSistema(1L, 1L, "Sistema", "Gian Gay 1");
+
+//            try {
+//                Thread.sleep(2000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+
             emitirNotificacaoFactory.getFactry(ContextSingleton.getContext()).emitirNotificacaoAplicativo(1L, 1L, "Aplicativo", "Gian Gay 2");
             emitirNotificacaoFactory.getFactry(ContextSingleton.getContext()).emitirNotificacaoAplicativo(2L, 1L, "Aplicativo", "Gian Gay 3");
 

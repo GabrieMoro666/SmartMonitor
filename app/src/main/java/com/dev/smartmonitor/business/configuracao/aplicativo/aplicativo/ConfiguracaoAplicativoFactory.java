@@ -2,7 +2,7 @@ package com.dev.smartmonitor.business.configuracao.aplicativo.aplicativo;
 
 import android.content.Context;
 
-import com.dev.smartmonitor.business.aplicativoAnalise.aplicativoAnalise.AplicativoAnaliseFactoryCreator;
+import com.dev.smartmonitor.business.aplicativo.analise.analise.AplicativoAnaliseFactoryCreator;
 import com.dev.smartmonitor.business.basic.basic.BasicFactoryCreator;
 import com.dev.smartmonitor.business.configuracao.aplicativo.adapter.model.RowConfiguracaoAplicativo;
 import com.dev.smartmonitor.persistence.dao.model.Aplicativo;

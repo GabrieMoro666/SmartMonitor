@@ -4,46 +4,59 @@ import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationChannelGroup;
 import android.app.NotificationManager;
-import android.content.Context;
 import android.os.Build;
 
 public class Channel extends Application {
 
-    public static final String CHANNEL_GRUPO_1 = "GRUPO_1";
-    public static final String CHANNEL_GRUPO_2 = "GRUPO_2";
+    public static final String CHANNEL_GRUPO_ID_SISTEMA                 = "GRUPO_SISTEMA";
+    public static final String CHANNEL_GRUPO_ID_APLICATIVO              = "GRUPO_APLICATIVO";
+    public static final String CHANNEL_GRUPO_ID_SERVICO                 = "GRUPO_SERVICO";
 
-    public static final String CHANNEL_NOTIFICACAO_SISTEMA = "Notificação Smart Monitor (SISTEMA)";
-    public static final String CHANNEL_NOTIFICACAO_APLICATIVO = "Notificação Smart Monitor (APLICATIVO)";
+    public static final String CHANNEL_GRUPO_NOME_SISTEMA               = "Sistema";
+    public static final String CHANNEL_GRUPO_NOME_APLICATIVO            = "Aplicativo";
+    public static final String CHANNEL_GRUPO_NOME_SERVICO               = "Serviço";
+
+    public static final String CHANNEL_NOTIFICACAO_ID_SISTEMA           = "CHANNEL_SISTEMA";
+    public static final String CHANNEL_NOTIFICACAO_ID_APLICATIVO        = "CHANNEL_APLICATIVO";
+    public static final String CHANNEL_NOTIFICACAO_ID_SERVICO           = "CHANNEL_SERVICO";
+
+    public static final String CHANNEL_NOTIFICACAO_NOME_SISTEMA         = "Sistema";
+    public static final String CHANNEL_NOTIFICACAO_NOME_APLICATIVO      = "Aplicativo";
+    public static final String CHANNEL_NOTIFICACAO_NOME_SERVICO         = "Serviço";
+
+    public static final String CHANNEL_NOTIFICACAO_DESCRICAO_SISTEMA    = "Notificação do sistema";
+    public static final String CHANNEL_NOTIFICACAO_DESCRICAO_APLICATIVO = "Notificação do aplicativo";
+    public static final String CHANNEL_NOTIFICACAO_DESCRICAO_SERVICO    = "Notificação do serviço";
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        createNotificationChannel();
+        createNotificationGroup(CHANNEL_GRUPO_ID_SISTEMA, CHANNEL_GRUPO_NOME_SISTEMA);
+        createNotificationGroup(CHANNEL_GRUPO_ID_APLICATIVO, CHANNEL_GRUPO_NOME_APLICATIVO);
 
+        createNotificationChannel(CHANNEL_GRUPO_ID_SISTEMA, CHANNEL_NOTIFICACAO_ID_SISTEMA, CHANNEL_NOTIFICACAO_NOME_SISTEMA, CHANNEL_NOTIFICACAO_DESCRICAO_SISTEMA);
+        createNotificationChannel(CHANNEL_GRUPO_ID_APLICATIVO, CHANNEL_NOTIFICACAO_ID_APLICATIVO, CHANNEL_NOTIFICACAO_NOME_APLICATIVO, CHANNEL_NOTIFICACAO_DESCRICAO_APLICATIVO);
     }
 
-    private void createNotificationChannel(){
+    private void createNotificationChannel(String grupoId, String channelId, String channelNome, String channelDescricao){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
 
-            NotificationManager notificationManagerSistema = getSystemService(NotificationManager.class);
-            NotificationManager notificationManagerAplicativo = getSystemService(NotificationManager.class);
+            NotificationChannel notificationChannel = new NotificationChannel(channelId, channelNome, NotificationManager.IMPORTANCE_DEFAULT);
+            notificationChannel.setDescription(channelDescricao);
+            notificationChannel.setGroup(grupoId);
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
+    }
 
-            NotificationChannelGroup notificationChannelGroupSistema = new NotificationChannelGroup(CHANNEL_GRUPO_1, CHANNEL_GRUPO_1);
-            NotificationChannelGroup notificationChannelGroupAplicativo = new NotificationChannelGroup(CHANNEL_GRUPO_2, CHANNEL_GRUPO_2);
+    private void createNotificationGroup(String groupId, String groupNome){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
 
-            notificationManagerSistema.createNotificationChannelGroup(notificationChannelGroupSistema);
-            notificationManagerAplicativo.createNotificationChannelGroup(notificationChannelGroupAplicativo);
+            NotificationChannelGroup notificationChannelGroup    = new NotificationChannelGroup(groupId   , groupNome);
 
-            NotificationChannel notificationChannelSistema = new NotificationChannel(CHANNEL_NOTIFICACAO_SISTEMA, CHANNEL_NOTIFICACAO_SISTEMA, NotificationManager.IMPORTANCE_DEFAULT);
-            notificationChannelSistema.setDescription(CHANNEL_NOTIFICACAO_SISTEMA);
-            notificationChannelSistema.setGroup(CHANNEL_GRUPO_1);
-            notificationManagerSistema.createNotificationChannel(notificationChannelSistema);
-
-            NotificationChannel notificationChannelAplicativo = new NotificationChannel(CHANNEL_NOTIFICACAO_APLICATIVO, CHANNEL_NOTIFICACAO_APLICATIVO, NotificationManager.IMPORTANCE_DEFAULT);
-            notificationChannelAplicativo.setDescription(CHANNEL_NOTIFICACAO_APLICATIVO);
-            notificationChannelAplicativo.setGroup(CHANNEL_GRUPO_2);
-            notificationManagerAplicativo.createNotificationChannel(notificationChannelAplicativo);
+            notificationManager.createNotificationChannelGroup(notificationChannelGroup);
         }
     }
 

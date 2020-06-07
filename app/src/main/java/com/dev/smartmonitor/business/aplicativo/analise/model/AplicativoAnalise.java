@@ -1,4 +1,4 @@
-package com.dev.smartmonitor.business.aplicativoAnalise.model;
+package com.dev.smartmonitor.business.aplicativo.analise.model;
 
 import com.dev.smartmonitor.persistence.dao.model.Aplicativo;
 
