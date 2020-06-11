@@ -65,13 +65,22 @@ public class SmartMonitor extends AppCompatActivity {
 
     private void alerta(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Permissões negadas");
-        builder.setMessage("Aceite as permissões para o correto funcionamento!");
+        builder.setTitle("Permissão");
+        builder.setMessage("Para o correto funcionamento do aplicativo, aceite a permissão de monitoramento");
         builder.setCancelable(false);
-        builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setPositiveButton("Permitir", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                finish();
+                Intent intent = new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS);
+                startActivity(intent);
+            }
+        });
+
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                System.exit(0);
             }
         });
 
