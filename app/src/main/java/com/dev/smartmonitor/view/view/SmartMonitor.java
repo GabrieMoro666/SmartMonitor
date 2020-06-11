@@ -1,13 +1,23 @@
 package com.dev.smartmonitor.view.view;
 
+import android.app.AppOpsManager;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.Menu;
 
+import com.dev.smartmonitor.service.MonitoradorService;
 import com.dev.smartmonitor.util.ContextSingleton;
 import com.dev.smartmonitor.R;
 import com.dev.smartmonitor.util.Instalacao;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -43,6 +53,52 @@ public class SmartMonitor extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         Instalacao.criarSistema(SmartMonitor.this);
+
+        if(!isAccessGranted()){
+            //dialog
+            alerta();
+        }else{
+            startService();
+        }
+
+    }
+
+    private void alerta(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Permissões negadas");
+        builder.setMessage("Aceite as permissões para o correto funcionamento!");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    public void startService(){
+        Intent intent = new Intent(this, MonitoradorService.class);
+        ContextCompat.startForegroundService(this, intent);
+    }
+
+    private boolean isAccessGranted() {
+        try {
+            PackageManager packageManager = getPackageManager();
+            ApplicationInfo applicationInfo = packageManager.getApplicationInfo(getPackageName(), 0);
+            AppOpsManager appOpsManager = (AppOpsManager) getSystemService(Context.APP_OPS_SERVICE);
+            int mode = 0;
+            if (appOpsManager != null) {
+                mode = appOpsManager.checkOpNoThrow(AppOpsManager.OPSTR_GET_USAGE_STATS,
+                        applicationInfo.uid, applicationInfo.packageName);
+            }
+            return (mode == AppOpsManager.MODE_ALLOWED);
+
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
     }
 
     @Override

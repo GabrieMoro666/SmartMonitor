@@ -10,4 +10,6 @@ public interface IConfiguracaoAplicativoFactory {
     public List<RowConfiguracaoAplicativo> construirConfiguracaoAplicativo();
 
     public void updateConfiguracaoAplicativo(long idAplicativo, String tempoDiario, String tempoContinuo);
+
+    public ConfiguracaoTempoAplicativo construirConfiguracaoAplicativo(long idAplicativo);
 }

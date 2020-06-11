@@ -55,7 +55,26 @@ public class ConfiguracaoAplicativoFactory implements IConfiguracaoAplicativoFac
         return rows;
     }
 
-    private void inserirConfiguracaoAplicativo(long idAplicativo){
+    @Override
+    public ConfiguracaoTempoAplicativo construirConfiguracaoAplicativo(long idAplicativo){
+        BasicFactoryCreator basicFactory = new BasicFactoryCreator();
+        Aplicativo aplicativo;
+        ConfiguracaoTempoAplicativo configuracaoTempoAplicativo;
+
+        configuracaoTempoAplicativo = basicFactory.getFactry(context).createSelectFactory().buscarConfiguracaoTempoAplicativoByIdAplicativo(idAplicativo);
+
+        if (configuracaoTempoAplicativo == null) {
+            configuracaoTempoAplicativo = new ConfiguracaoTempoAplicativo();
+            configuracaoTempoAplicativo.setIdAplicativo(idAplicativo);
+            configuracaoTempoAplicativo.setTempoContinuo("00:00");
+            configuracaoTempoAplicativo.setTempoDiario("00:00");
+            configuracaoTempoAplicativo.setId(inserirConfiguracaoAplicativo(idAplicativo));
+        }
+
+        return configuracaoTempoAplicativo;
+    }
+
+    private long inserirConfiguracaoAplicativo(long idAplicativo){
         BasicFactoryCreator basicFactory = new BasicFactoryCreator();
         ConfiguracaoTempoAplicativo configuracaoTempoAplicativo = new ConfiguracaoTempoAplicativo();
         long idNewRow;
@@ -64,7 +83,7 @@ public class ConfiguracaoAplicativoFactory implements IConfiguracaoAplicativoFac
         configuracaoTempoAplicativo.setTempoDiario("00:00");
         configuracaoTempoAplicativo.setTempoContinuo("00:00");
 
-        idNewRow = basicFactory.getFactry(context).createInsertFactory().inserir(configuracaoTempoAplicativo);
+        return idNewRow = basicFactory.getFactry(context).createInsertFactory().inserir(configuracaoTempoAplicativo);
     }
 
     @Override

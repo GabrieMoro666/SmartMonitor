@@ -92,7 +92,7 @@ public class AplicativoAnaliseFactory implements IAplicativoAnaliseFactory {
     }
 
     @Override
-    public void analizarAplicativo(String aplicativoDispositivo){
+    public long analizarAplicativo(String aplicativoDispositivo){
         BasicFactoryCreator basicFactory;
         Aplicativo aplicativo;
 
@@ -100,14 +100,16 @@ public class AplicativoAnaliseFactory implements IAplicativoAnaliseFactory {
         aplicativo = basicFactory.getFactry(context).createSelectFactory().buscarAplicativoByNome(aplicativoDispositivo);
 
         if (aplicativo == null){
-            inserirAplicativo(aplicativoDispositivo);
+            return inserirAplicativo(aplicativoDispositivo);
         } else {
             aplicativo.setAtivo("S");
             atualizarAplicativo(aplicativo);
+
+            return aplicativo.getId();
         }
     }
 
-    private void inserirAplicativo(String nomeAplicativo){
+    private long inserirAplicativo(String nomeAplicativo){
         BasicFactoryCreator basicFactory;
         Aplicativo aplicativo = new Aplicativo();
         Sistema sistema;
@@ -122,6 +124,8 @@ public class AplicativoAnaliseFactory implements IAplicativoAnaliseFactory {
         aplicativo.setAtivo("S");
 
         idNewRow = basicFactory.getFactry(context).createInsertFactory().inserir(aplicativo);
+
+        return idNewRow;
     }
 
     private void atualizarAplicativo(Aplicativo aplicativo){

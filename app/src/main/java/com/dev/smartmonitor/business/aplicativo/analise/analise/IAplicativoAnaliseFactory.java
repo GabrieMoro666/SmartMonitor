@@ -4,6 +4,6 @@ public interface IAplicativoAnaliseFactory {
 
     public void analizarAplicativo();
 
-    public void analizarAplicativo(String aplicativoDispositivo);
+    public long analizarAplicativo(String aplicativoDispositivo);
 
 }
