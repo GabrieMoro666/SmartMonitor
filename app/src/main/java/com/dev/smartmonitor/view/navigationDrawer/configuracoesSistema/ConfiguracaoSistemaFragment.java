@@ -198,7 +198,7 @@ public class ConfiguracaoSistemaFragment extends Fragment {
         editTextTempoContinuo.setOnClickListener(new OnClickTempoContinuo());
 
         configuracaoFactory = new ConfiguracaoFactoryCreator();
-        configuracaoTempoSistema = configuracaoFactory.getFactryConfiguracaoSistema(context).construirConfiguracaoSistema();
+        configuracaoTempoSistema = configuracaoFactory.getFactryConfiguracaoSistema(context).construirConfiguracaoSistema(1L);
 
         editTextTempoDiario.setText(configuracaoTempoSistema.getTempoDiario());
         editTextTempoContinuo.setText(configuracaoTempoSistema.getTempoContinuo());

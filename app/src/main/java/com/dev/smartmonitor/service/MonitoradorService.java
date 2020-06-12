@@ -16,8 +16,14 @@ import android.widget.Toast;
 import androidx.core.app.NotificationCompat;
 
 import com.dev.smartmonitor.R;
+import com.dev.smartmonitor.business.aplicativo.analise.analise.AplicativoAnaliseFactoryCreator;
+import com.dev.smartmonitor.business.dados.dados.DadosFactoryCreator;
+import com.dev.smartmonitor.persistence.dao.model.Aplicativo;
+import com.dev.smartmonitor.util.ContextSingleton;
+import com.dev.smartmonitor.util.Util;
 import com.dev.smartmonitor.view.view.SmartMonitor;
 
+import java.util.Date;
 import java.util.List;
 import java.util.SortedMap;
 import java.util.TreeMap;
@@ -35,7 +41,7 @@ public class MonitoradorService extends Service {
         @Override
         public void run() {
             MonitoradorService monitoradorService = new MonitoradorService();
-            monitoradorService.acao();
+            monitoradorService.servico();
         }
 
     }
@@ -62,7 +68,7 @@ public class MonitoradorService extends Service {
         return START_NOT_STICKY;
     }
 
-    public void notificacaoServico() {
+    private void notificacaoServico() {
         int icone = R.mipmap.ic_launcher;
         Intent notificationIntent = new Intent(this, SmartMonitor.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
@@ -79,43 +85,58 @@ public class MonitoradorService extends Service {
 
     }
 
-    public void notificacao() {
-
-        Intent notificationIntent = new Intent(this, SmartMonitor.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent, 0);
-
-        Notification notification = new NotificationCompat.Builder(this, CHANNEL_NOTIFICACAO_ID_SERVICO)
-                .setContentTitle("SmartMonitor")
-                .setContentText("Monitoramento em execução")
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentIntent(pendingIntent)
-                .build();
-        startForeground(1, notification);
-
-    }
-
-    private void acao() {
-
-        String atualApp;
-        String anteriorApp = "anterior";
+    private void servico() {
+        String aplicativoAtual;
+        String aplicativoAnterior = "";
+        Date dataInicial = Util.calcularDataAtual(), dataFinal = Util.calcularDataAtual();
 
         while (true) {
+            aplicativoAtual = buscarAplicativo();
 
-            atualApp = buscarPacoteEmExecucao();
+            if (!aplicativoAtual.equals(aplicativoAnterior)) {
+                if (!aplicativoAnterior.isEmpty()) {
+                    processoServico(aplicativoAnterior, dataInicial, dataFinal);
+                }
 
-            if (!(atualApp.equals(anteriorApp))) {
+                aplicativoAnterior = aplicativoAtual;
+                dataInicial = Util.calcularDataAtual();
 
-                //aqui a chama a magica
-
-                anteriorApp = atualApp;
-                Log.e("TESTE", "APLICACAO EM EXECUCAO: " + atualApp);
+                Log.e("TESTE", "APLICACAO EM EXECUCAO: " + aplicativoAtual);
+            }else{
+                try {
+                    Log.e("TESTE", "Desmaiou");
+                    dataFinal = Util.calcularDataAtual();
+                    Thread.sleep(1500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
 
         }
     }
 
-    public String buscarPacoteEmExecucao() {
-        String currentApp = "Current";
+    private void processoServico(String nomeAplicativo, Date dataInicial, Date dataFinal){
+        AplicativoAnaliseFactoryCreator aplicativoAnaliseFactory = new AplicativoAnaliseFactoryCreator();
+        DadosFactoryCreator dadosFactory = new DadosFactoryCreator();
+        long idAplicativo;
+
+        idAplicativo = aplicativoAnaliseFactory.getFactry(getContext()).analizarAplicativo(nomeAplicativo);
+        dadosFactory.getFactryDadosAplicativo(getContext()).construirTempoUso(idAplicativo, dataInicial, dataFinal);
+        dadosFactory.getFactryDadosSistema(getContext()).construirTempoUso(1L, dataInicial, dataFinal);
+    }
+
+    private String buscarAplicativo(){
+        String aplicativoAtual = "";
+        String pacoteAtual = "";
+
+        pacoteAtual = buscarPacoteEmExecucao();
+        aplicativoAtual = buscarNomeAplicativoDoPacote(pacoteAtual);
+
+        return aplicativoAtual;
+    }
+
+    private String buscarPacoteEmExecucao() {
+        String pacoteAtual = "";
 
         UsageStatsManager usm = (UsageStatsManager) getContext().getSystemService(Context.USAGE_STATS_SERVICE);
         long time = System.currentTimeMillis();
@@ -134,17 +155,15 @@ public class MonitoradorService extends Service {
             }
 
             if (mySortedMap != null && !mySortedMap.isEmpty()) {
-                currentApp = mySortedMap.get(mySortedMap.lastKey()).getPackageName();
+                pacoteAtual = mySortedMap.get(mySortedMap.lastKey()).getPackageName();
             }
 
         }
 
-        currentApp = buscarNomeAplicativo(currentApp);
-
-        return currentApp;
+        return pacoteAtual;
     }
 
-    public String buscarNomeAplicativo(String nomePacote){
+    private String buscarNomeAplicativoDoPacote(String nomePacote){
         String nomeAplicativo;
 
         try {

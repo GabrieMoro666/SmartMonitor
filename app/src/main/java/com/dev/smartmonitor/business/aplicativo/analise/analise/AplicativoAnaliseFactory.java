@@ -72,7 +72,7 @@ public class AplicativoAnaliseFactory implements IAplicativoAnaliseFactory {
     private void verificarAplicativosVerificados(List<AplicativoAnalise> aplicativosAnalise){
         for (AplicativoAnalise a : aplicativosAnalise) {
             if (!a.isVerificado()){
-                a.getAplicativo().setAtivo("N");
+                a.getAplicativo().setAtivo("S");
                 atualizarAplicativo(a.getAplicativo());
             }
         }

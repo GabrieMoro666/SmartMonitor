@@ -31,15 +31,6 @@ public class EmitirNotificacaoFactory implements IEmitirNotificacaoFactory {
         this.context = context;
     }
 
-    private NotificacaoSistema buscarNotificacaoSistema(long idSistema) {
-        BasicFactoryCreator basicFactory = new BasicFactoryCreator();
-        NotificacaoSistema notificacaoSistema;
-
-        notificacaoSistema = basicFactory.getFactry(context).createSelectFactory().buscarNotificacaoSistemaByIdSistemaData(idSistema, Util.calcularDataAtual());
-
-        return notificacaoSistema;
-    }
-
     private void inserirNotificacao(NotificacaoSistema notificacaoSistema) {
         long idNewRow;
         BasicFactoryCreator basicFactory = new BasicFactoryCreator();
@@ -53,31 +44,18 @@ public class EmitirNotificacaoFactory implements IEmitirNotificacaoFactory {
     public void emitirNotificacaoSistema(long idSistema, long idConfiguracao, String titulo, String descricao) {
         NotificacaoSistema notificacaoSistema;
 
-        notificacaoSistema = buscarNotificacaoSistema(idSistema);
+        notificacaoSistema = new NotificacaoSistema();
 
-        if (notificacaoSistema == null) {
-            notificacaoSistema = new NotificacaoSistema();
+        notificacaoSistema.setIdSistema(idSistema);
+        notificacaoSistema.setIdConfiguracao(idConfiguracao);
+        notificacaoSistema.setData(Util.calcularDataAtual());
+        notificacaoSistema.setTitulo(titulo);
+        notificacaoSistema.setDescricao(descricao);
+        notificacaoSistema.setStatus("E");
 
-            notificacaoSistema.setIdSistema(idSistema);
-            notificacaoSistema.setIdConfiguracao(idConfiguracao);
-            notificacaoSistema.setData(Util.calcularDataAtual());
-            notificacaoSistema.setTitulo(titulo);
-            notificacaoSistema.setDescricao(descricao);
-            notificacaoSistema.setStatus("E");
+        inserirNotificacao(notificacaoSistema);
 
-            inserirNotificacao(notificacaoSistema);
-
-            emitirNotificacao(notificacaoSistema.getId(), titulo, descricao, CHANNEL_NOTIFICACAO_ID_SISTEMA);
-        }
-    }
-
-    private NotificacaoAplicativo buscarNotificacaoAplicativo(long idAplicativo) {
-        BasicFactoryCreator basicFactory = new BasicFactoryCreator();
-        NotificacaoAplicativo notificacaoAplicativo;
-
-        notificacaoAplicativo = basicFactory.getFactry(context).createSelectFactory().buscarNotificacaoAplicativoByIdAplicativoData(idAplicativo, Util.calcularDataAtual());
-
-        return notificacaoAplicativo;
+        emitirNotificacao(notificacaoSistema.getId(), titulo, descricao, CHANNEL_NOTIFICACAO_ID_SISTEMA);
     }
 
     private void inserirNotificacao(NotificacaoAplicativo notificacaoAplicativo) {
@@ -93,22 +71,18 @@ public class EmitirNotificacaoFactory implements IEmitirNotificacaoFactory {
     public void emitirNotificacaoAplicativo(long idAplicativo, long idConfiguracao, String titulo, String descricao) {
         NotificacaoAplicativo notificacaoAplicativo;
 
-        notificacaoAplicativo = buscarNotificacaoAplicativo(idAplicativo);
+        notificacaoAplicativo = new NotificacaoAplicativo();
 
-        if (notificacaoAplicativo == null) {
-            notificacaoAplicativo = new NotificacaoAplicativo();
+        notificacaoAplicativo.setIdAplicativo(idAplicativo);
+        notificacaoAplicativo.setIdConfiguracao(idConfiguracao);
+        notificacaoAplicativo.setData(Util.calcularDataAtual());
+        notificacaoAplicativo.setTitulo(titulo);
+        notificacaoAplicativo.setDescricao(descricao);
+        notificacaoAplicativo.setStatus("E");
 
-            notificacaoAplicativo.setIdAplicativo(idAplicativo);
-            notificacaoAplicativo.setIdConfiguracao(idConfiguracao);
-            notificacaoAplicativo.setData(Util.calcularDataAtual());
-            notificacaoAplicativo.setTitulo(titulo);
-            notificacaoAplicativo.setDescricao(descricao);
-            notificacaoAplicativo.setStatus("E");
+        inserirNotificacao(notificacaoAplicativo);
 
-            inserirNotificacao(notificacaoAplicativo);
-
-            emitirNotificacao(notificacaoAplicativo.getId(), titulo, descricao, CHANNEL_NOTIFICACAO_ID_APLICATIVO);
-        }
+        emitirNotificacao(notificacaoAplicativo.getId(), titulo, descricao, CHANNEL_NOTIFICACAO_ID_APLICATIVO);
     }
 
     private void emitirNotificacao(long id, String titulo, String descricao, String channel){

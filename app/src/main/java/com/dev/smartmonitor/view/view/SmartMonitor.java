@@ -56,12 +56,10 @@ public class SmartMonitor extends AppCompatActivity {
         Instalacao.criarSistema(SmartMonitor.this);
 
         if(!isAccessGranted()){
-            //dialog
             alerta();
-        }else{
-            startService();
         }
 
+        startService();
     }
 
     private void alerta(){

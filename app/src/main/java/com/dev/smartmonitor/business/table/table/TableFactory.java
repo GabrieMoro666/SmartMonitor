@@ -1,6 +1,5 @@
 package com.dev.smartmonitor.business.table.table;
 
-import android.app.Activity;
 import android.content.Context;
 
 import com.dev.smartmonitor.business.basic.basic.BasicFactoryCreator;
@@ -12,7 +11,6 @@ import com.dev.smartmonitor.persistence.dao.model.DadosUsoSistema;
 import com.dev.smartmonitor.persistence.dao.model.DataInicialFinal;
 import com.dev.smartmonitor.persistence.dao.model.Sistema;
 import com.dev.smartmonitor.util.Util;
-import com.dev.smartmonitor.view.view.CustomDialogMensagem;
 
 import java.util.Date;
 import java.util.LinkedList;
@@ -70,7 +68,7 @@ public class TableFactory implements ITableFactory {
             if (dadosUsoAplicativos.size() > 0){
                 rowTable = new RowTable();
                 rowTable.setNomeAplicativo(a.getNome());
-                rowTable.setTempoUso(Util.calcularDiaHoraMinutiDeMinutos(Util.calcularTempoDadosUso(dataInicial, dataFinal, (List<DataInicialFinal>) ((List<? extends DataInicialFinal>) dadosUsoAplicativos))));
+                rowTable.setTempoUso(Util.calcularDiaHoraMinutoDeMinutos(Util.calcularTempoDadosUso(dataInicial, dataFinal, (List<DataInicialFinal>) ((List<? extends DataInicialFinal>) dadosUsoAplicativos))));
 
                 rowTables.add(rowTable);
             }
@@ -120,7 +118,7 @@ public class TableFactory implements ITableFactory {
         if (sistema != null){
             dadosUsoSistemas = basicFactory.getFactry(context).createSelectFactory().buscarDadosUsoSistemaByData(dataInicial, dataFinal);
 
-            tempoUso =  Util.calcularDiaHoraMinutiDeMinutos(Util.calcularTempoDadosUso(dataInicial, dataFinal, (List<DataInicialFinal>) ((List<? extends DataInicialFinal>) dadosUsoSistemas)));
+            tempoUso =  Util.calcularDiaHoraMinutoDeMinutos(Util.calcularTempoDadosUso(dataInicial, dataFinal, (List<DataInicialFinal>) ((List<? extends DataInicialFinal>) dadosUsoSistemas)));
         }
 
         return tempoUso;

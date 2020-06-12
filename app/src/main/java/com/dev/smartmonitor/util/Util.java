@@ -369,7 +369,7 @@ public class Util {
         return checagem;
     }
 
-    public static String calcularDiaHoraMinutiDeMinutos(int minutos){
+    public static String calcularDiaHoraMinutoDeMinutos(int minutos){
         int diasCalculado, horasCalculado, minutosCalculado, minutosRestantes;
         String mensagemDiasCalculado, mensagemHorasCalculado, mensagemMinutosCalculado, mensagem;
 

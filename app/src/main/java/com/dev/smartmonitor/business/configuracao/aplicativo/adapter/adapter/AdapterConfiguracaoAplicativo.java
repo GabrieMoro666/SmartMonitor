@@ -73,7 +73,7 @@ public class AdapterConfiguracaoAplicativo extends RecyclerView.Adapter {
             this.editTextTempoContinuo.setOnClickListener(new OnClickEditTextContinuo());
 
             this.configuracaoFactory = new ConfiguracaoFactoryCreator();
-            this.configuracaoTempoSistema = this.configuracaoFactory.getFactryConfiguracaoSistema(context).construirConfiguracaoSistema();
+            this.configuracaoTempoSistema = this.configuracaoFactory.getFactryConfiguracaoSistema(context).construirConfiguracaoSistema(1L);
         }
 
         class OnClickEditTextDiario implements View.OnClickListener, CustomDialogTimePicker.CustomDialogTimePickerListener  {

@@ -5,7 +5,7 @@ import com.dev.smartmonitor.persistence.dao.model.ConfiguracaoTempoSistema;
 
 public interface IConfiguracaoSistemaFactory {
 
-    public ConfiguracaoTempoSistema construirConfiguracaoSistema();
+    public ConfiguracaoTempoSistema construirConfiguracaoSistema(long idSistema);
 
     public void updateConfiguracaoSitema(long idSistema, String tempoDiario, String tempoContinuo);
 

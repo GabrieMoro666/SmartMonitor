@@ -20,12 +20,12 @@ public class ConfiguracaoSistemaFactory implements IConfiguracaoSistemaFactory {
     }
 
     @Override
-    public ConfiguracaoTempoSistema construirConfiguracaoSistema(){
+    public ConfiguracaoTempoSistema construirConfiguracaoSistema(long idSistema){
         BasicFactoryCreator basicFactory = new BasicFactoryCreator();
         Sistema sistema;
         ConfiguracaoTempoSistema configuracaoTempoSistema;
 
-        sistema = basicFactory.getFactry(context).createSelectFactory().buscarSistemaById(1L);
+        sistema = basicFactory.getFactry(context).createSelectFactory().buscarSistemaById(idSistema);
 
         configuracaoTempoSistema = basicFactory.getFactry(context).createSelectFactory().buscarConfiguracaoTempoSistemaByIdSistema(sistema.getId());
 

@@ -161,7 +161,7 @@ public class ChartFactory implements IChartFactory {
         if (sistema != null){
             dadosUsoSistemas = basicFactory.getFactry(context).createSelectFactory().buscarDadosUsoSistemaByData(dataInicial, dataFinal);
 
-            tempoUso =  Util.calcularDiaHoraMinutiDeMinutos(Util.calcularTempoDadosUso(dataInicial, dataFinal, (List<DataInicialFinal>) ((List<? extends DataInicialFinal>) dadosUsoSistemas)));
+            tempoUso =  Util.calcularDiaHoraMinutoDeMinutos(Util.calcularTempoDadosUso(dataInicial, dataFinal, (List<DataInicialFinal>) ((List<? extends DataInicialFinal>) dadosUsoSistemas)));
         }
 
         return tempoUso;

@@ -1,6 +1,7 @@
 package com.dev.smartmonitor.business.configuracao.aplicativo.aplicativo;
 
 import android.content.Context;
+import android.os.Build;
 
 import com.dev.smartmonitor.business.aplicativo.analise.analise.AplicativoAnaliseFactoryCreator;
 import com.dev.smartmonitor.business.basic.basic.BasicFactoryCreator;
@@ -8,6 +9,8 @@ import com.dev.smartmonitor.business.configuracao.aplicativo.adapter.model.RowCo
 import com.dev.smartmonitor.persistence.dao.model.Aplicativo;
 import com.dev.smartmonitor.persistence.dao.model.ConfiguracaoTempoAplicativo;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -50,6 +53,10 @@ public class ConfiguracaoAplicativoFactory implements IConfiguracaoAplicativoFac
             }
 
             rows.add(row);
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Collections.sort(rows, Comparator.comparing(RowConfiguracaoAplicativo::getNome));
         }
 
         return rows;
