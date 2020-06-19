@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">SmartMonitor</string>
 
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Smart Monitor</string>
+    <string name="nav_header_subtitle">v1.0</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Configurações</string>
 

@@ -22,11 +22,11 @@ public class Channel extends Application {
 
     public static final String CHANNEL_NOTIFICACAO_NOME_SISTEMA         = "Sistema";
     public static final String CHANNEL_NOTIFICACAO_NOME_APLICATIVO      = "Aplicativo";
-    public static final String CHANNEL_NOTIFICACAO_NOME_SERVICO         = "Serviço";
+    public static final String CHANNEL_NOTIFICACAO_NOME_SERVICO         = "Monitorador";
 
     public static final String CHANNEL_NOTIFICACAO_DESCRICAO_SISTEMA    = "Notificação do sistema";
     public static final String CHANNEL_NOTIFICACAO_DESCRICAO_APLICATIVO = "Notificação do aplicativo";
-    public static final String CHANNEL_NOTIFICACAO_DESCRICAO_SERVICO    = "Notificação do serviço";
+    public static final String CHANNEL_NOTIFICACAO_DESCRICAO_SERVICO    = "Monitoramento de uso em execução";
 
     @Override
     public void onCreate() {
