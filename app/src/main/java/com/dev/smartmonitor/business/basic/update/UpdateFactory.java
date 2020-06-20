@@ -79,6 +79,7 @@ public class UpdateFactory implements IUpdateFactory{
         values.put(FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ID, aplicativo.getId());
         values.put(FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ID_SISTEMA, aplicativo.getIdSistema());
         values.put(FeedReaderAplicativo.FeedEntry.COLUMN_NAME_NOME, aplicativo.getNome());
+        values.put(FeedReaderAplicativo.FeedEntry.COLUMN_NAME_PACOTE, aplicativo.getPacote());
         values.put(FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ATIVO, aplicativo.getAtivo());
 
         String selection =  FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ID         + " = ? AND " +

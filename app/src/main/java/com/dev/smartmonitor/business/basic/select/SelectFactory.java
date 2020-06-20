@@ -113,10 +113,10 @@ public class SelectFactory implements ISelectFactory {
         DAOFactoryCreator daoFactory = new DAOFactoryCreator();
 
         String[] projection = {
-                FeedReaderChecagemSistema.FeedEntry.COLUMN_NAME_ID,
-                FeedReaderChecagemSistema.FeedEntry.COLUMN_NAME_ID_SISTEMA,
-                FeedReaderChecagemSistema.FeedEntry.COLUMN_NAME_DATA,
-                FeedReaderChecagemSistema.FeedEntry.COLUMN_NAME_QUANTIDADE
+            FeedReaderChecagemSistema.FeedEntry.COLUMN_NAME_ID,
+            FeedReaderChecagemSistema.FeedEntry.COLUMN_NAME_ID_SISTEMA,
+            FeedReaderChecagemSistema.FeedEntry.COLUMN_NAME_DATA,
+            FeedReaderChecagemSistema.FeedEntry.COLUMN_NAME_QUANTIDADE
         };
 
         String selection = FeedReaderChecagemSistema.FeedEntry.COLUMN_NAME_DATA + " = ?";
@@ -134,10 +134,10 @@ public class SelectFactory implements ISelectFactory {
         DAOFactoryCreator daoFactory = new DAOFactoryCreator();
 
         String[] projection = {
-                FeedReaderChecagemSistema.FeedEntry.COLUMN_NAME_ID,
-                FeedReaderChecagemSistema.FeedEntry.COLUMN_NAME_ID_SISTEMA,
-                FeedReaderChecagemSistema.FeedEntry.COLUMN_NAME_DATA,
-                FeedReaderChecagemSistema.FeedEntry.COLUMN_NAME_QUANTIDADE
+            FeedReaderChecagemSistema.FeedEntry.COLUMN_NAME_ID,
+            FeedReaderChecagemSistema.FeedEntry.COLUMN_NAME_ID_SISTEMA,
+            FeedReaderChecagemSistema.FeedEntry.COLUMN_NAME_DATA,
+            FeedReaderChecagemSistema.FeedEntry.COLUMN_NAME_QUANTIDADE
         };
 
         String selection = FeedReaderChecagemSistema.FeedEntry.COLUMN_NAME_DATA + " BETWEEN ? AND ?";
@@ -158,6 +158,7 @@ public class SelectFactory implements ISelectFactory {
             FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ID,
             FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ID_SISTEMA,
             FeedReaderAplicativo.FeedEntry.COLUMN_NAME_NOME,
+            FeedReaderAplicativo.FeedEntry.COLUMN_NAME_PACOTE,
             FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ATIVO
         };
 
@@ -176,10 +177,11 @@ public class SelectFactory implements ISelectFactory {
         DAOFactoryCreator daoFactory = new DAOFactoryCreator();
 
         String[] projection = {
-                FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ID,
-                FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ID_SISTEMA,
-                FeedReaderAplicativo.FeedEntry.COLUMN_NAME_NOME,
-                FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ATIVO
+            FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ID,
+            FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ID_SISTEMA,
+            FeedReaderAplicativo.FeedEntry.COLUMN_NAME_NOME,
+            FeedReaderAplicativo.FeedEntry.COLUMN_NAME_PACOTE,
+            FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ATIVO
         };
 
         String selection =  FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ID + " = ? AND " +
@@ -198,10 +200,11 @@ public class SelectFactory implements ISelectFactory {
         DAOFactoryCreator daoFactory = new DAOFactoryCreator();
 
         String[] projection = {
-                FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ID,
-                FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ID_SISTEMA,
-                FeedReaderAplicativo.FeedEntry.COLUMN_NAME_NOME,
-                FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ATIVO
+            FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ID,
+            FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ID_SISTEMA,
+            FeedReaderAplicativo.FeedEntry.COLUMN_NAME_NOME,
+            FeedReaderAplicativo.FeedEntry.COLUMN_NAME_PACOTE,
+            FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ATIVO
         };
 
         String selection =  FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ID + " = ?";
@@ -219,10 +222,11 @@ public class SelectFactory implements ISelectFactory {
         DAOFactoryCreator daoFactory = new DAOFactoryCreator();
 
         String[] projection = {
-                FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ID,
-                FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ID_SISTEMA,
-                FeedReaderAplicativo.FeedEntry.COLUMN_NAME_NOME,
-                FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ATIVO
+            FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ID,
+            FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ID_SISTEMA,
+            FeedReaderAplicativo.FeedEntry.COLUMN_NAME_NOME,
+            FeedReaderAplicativo.FeedEntry.COLUMN_NAME_PACOTE,
+            FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ATIVO
         };
 
         String selection =  FeedReaderAplicativo.FeedEntry.COLUMN_NAME_NOME + " = ?";
@@ -240,10 +244,10 @@ public class SelectFactory implements ISelectFactory {
         DAOFactoryCreator daoFactory = new DAOFactoryCreator();
 
         String[] projection = {
-                FeedReaderConfiguracaoTempoAplicativo.FeedEntry.COLUMN_NAME_ID,
-                FeedReaderConfiguracaoTempoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO,
-                FeedReaderConfiguracaoTempoAplicativo.FeedEntry.COLUMN_NAME_TEMPO_DIARIO,
-                FeedReaderConfiguracaoTempoAplicativo.FeedEntry.COLUMN_NAME_TEMPO_CONTINUO
+            FeedReaderConfiguracaoTempoAplicativo.FeedEntry.COLUMN_NAME_ID,
+            FeedReaderConfiguracaoTempoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO,
+            FeedReaderConfiguracaoTempoAplicativo.FeedEntry.COLUMN_NAME_TEMPO_DIARIO,
+            FeedReaderConfiguracaoTempoAplicativo.FeedEntry.COLUMN_NAME_TEMPO_CONTINUO
         };
 
         ctaAll = daoFactory.getFactry(context).createConfiguracaoTempoAplicativo().buscar(projection, null, null, null, null, null);
@@ -257,10 +261,10 @@ public class SelectFactory implements ISelectFactory {
         DAOFactoryCreator daoFactory = new DAOFactoryCreator();
 
         String[] projection = {
-                FeedReaderConfiguracaoTempoAplicativo.FeedEntry.COLUMN_NAME_ID,
-                FeedReaderConfiguracaoTempoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO,
-                FeedReaderConfiguracaoTempoAplicativo.FeedEntry.COLUMN_NAME_TEMPO_DIARIO,
-                FeedReaderConfiguracaoTempoAplicativo.FeedEntry.COLUMN_NAME_TEMPO_CONTINUO
+            FeedReaderConfiguracaoTempoAplicativo.FeedEntry.COLUMN_NAME_ID,
+            FeedReaderConfiguracaoTempoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO,
+            FeedReaderConfiguracaoTempoAplicativo.FeedEntry.COLUMN_NAME_TEMPO_DIARIO,
+            FeedReaderConfiguracaoTempoAplicativo.FeedEntry.COLUMN_NAME_TEMPO_CONTINUO
         };
 
         String selection =  FeedReaderConfiguracaoTempoAplicativo.FeedEntry.COLUMN_NAME_ID + " = ? AND " +
@@ -279,10 +283,10 @@ public class SelectFactory implements ISelectFactory {
         DAOFactoryCreator daoFactory = new DAOFactoryCreator();
 
         String[] projection = {
-                FeedReaderConfiguracaoTempoAplicativo.FeedEntry.COLUMN_NAME_ID,
-                FeedReaderConfiguracaoTempoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO,
-                FeedReaderConfiguracaoTempoAplicativo.FeedEntry.COLUMN_NAME_TEMPO_DIARIO,
-                FeedReaderConfiguracaoTempoAplicativo.FeedEntry.COLUMN_NAME_TEMPO_CONTINUO
+            FeedReaderConfiguracaoTempoAplicativo.FeedEntry.COLUMN_NAME_ID,
+            FeedReaderConfiguracaoTempoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO,
+            FeedReaderConfiguracaoTempoAplicativo.FeedEntry.COLUMN_NAME_TEMPO_DIARIO,
+            FeedReaderConfiguracaoTempoAplicativo.FeedEntry.COLUMN_NAME_TEMPO_CONTINUO
         };
 
         String selection =  FeedReaderConfiguracaoTempoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO + " = ?";
@@ -300,10 +304,10 @@ public class SelectFactory implements ISelectFactory {
         DAOFactoryCreator daoFactory = new DAOFactoryCreator();
 
         String[] projection = {
-                FeedReaderConfiguracaoTempoSistema.FeedEntry.COLUMN_NAME_ID,
-                FeedReaderConfiguracaoTempoSistema.FeedEntry.COLUMN_NAME_ID_SISTEMA,
-                FeedReaderConfiguracaoTempoSistema.FeedEntry.COLUMN_NAME_TEMPO_DIARIO,
-                FeedReaderConfiguracaoTempoSistema.FeedEntry.COLUMN_NAME_TEMPO_CONTINUO
+            FeedReaderConfiguracaoTempoSistema.FeedEntry.COLUMN_NAME_ID,
+            FeedReaderConfiguracaoTempoSistema.FeedEntry.COLUMN_NAME_ID_SISTEMA,
+            FeedReaderConfiguracaoTempoSistema.FeedEntry.COLUMN_NAME_TEMPO_DIARIO,
+            FeedReaderConfiguracaoTempoSistema.FeedEntry.COLUMN_NAME_TEMPO_CONTINUO
         };
 
         ctsAll = daoFactory.getFactry(context).createConfiguracaoTempoSistema().buscar(projection, null, null, null, null, null);
@@ -317,10 +321,10 @@ public class SelectFactory implements ISelectFactory {
         DAOFactoryCreator daoFactory = new DAOFactoryCreator();
 
         String[] projection = {
-                FeedReaderConfiguracaoTempoSistema.FeedEntry.COLUMN_NAME_ID,
-                FeedReaderConfiguracaoTempoSistema.FeedEntry.COLUMN_NAME_ID_SISTEMA,
-                FeedReaderConfiguracaoTempoSistema.FeedEntry.COLUMN_NAME_TEMPO_DIARIO,
-                FeedReaderConfiguracaoTempoSistema.FeedEntry.COLUMN_NAME_TEMPO_CONTINUO
+            FeedReaderConfiguracaoTempoSistema.FeedEntry.COLUMN_NAME_ID,
+            FeedReaderConfiguracaoTempoSistema.FeedEntry.COLUMN_NAME_ID_SISTEMA,
+            FeedReaderConfiguracaoTempoSistema.FeedEntry.COLUMN_NAME_TEMPO_DIARIO,
+            FeedReaderConfiguracaoTempoSistema.FeedEntry.COLUMN_NAME_TEMPO_CONTINUO
         };
 
         String selection =  FeedReaderConfiguracaoTempoSistema.FeedEntry.COLUMN_NAME_ID + " = ? AND " +
@@ -339,10 +343,10 @@ public class SelectFactory implements ISelectFactory {
         DAOFactoryCreator daoFactory = new DAOFactoryCreator();
 
         String[] projection = {
-                FeedReaderConfiguracaoTempoSistema.FeedEntry.COLUMN_NAME_ID,
-                FeedReaderConfiguracaoTempoSistema.FeedEntry.COLUMN_NAME_ID_SISTEMA,
-                FeedReaderConfiguracaoTempoSistema.FeedEntry.COLUMN_NAME_TEMPO_DIARIO,
-                FeedReaderConfiguracaoTempoSistema.FeedEntry.COLUMN_NAME_TEMPO_CONTINUO
+            FeedReaderConfiguracaoTempoSistema.FeedEntry.COLUMN_NAME_ID,
+            FeedReaderConfiguracaoTempoSistema.FeedEntry.COLUMN_NAME_ID_SISTEMA,
+            FeedReaderConfiguracaoTempoSistema.FeedEntry.COLUMN_NAME_TEMPO_DIARIO,
+            FeedReaderConfiguracaoTempoSistema.FeedEntry.COLUMN_NAME_TEMPO_CONTINUO
         };
 
         String selection =  FeedReaderConfiguracaoTempoSistema.FeedEntry.COLUMN_NAME_ID_SISTEMA + " = ?";
@@ -360,10 +364,10 @@ public class SelectFactory implements ISelectFactory {
         DAOFactoryCreator daoFactory = new DAOFactoryCreator();
 
         String[] projection = {
-                FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_ID,
-                FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO,
-                FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_DATA_INICIAL,
-                FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_DATA_FINAL
+            FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_ID,
+            FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO,
+            FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_DATA_INICIAL,
+            FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_DATA_FINAL
         };
 
         duaAll = daoFactory.getFactry(context).createDadosUsoAplicativo().buscar(projection, null, null, null, null, null);
@@ -377,10 +381,10 @@ public class SelectFactory implements ISelectFactory {
         DAOFactoryCreator daoFactory = new DAOFactoryCreator();
 
         String[] projection = {
-                FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_ID,
-                FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO,
-                FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_DATA_INICIAL,
-                FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_DATA_FINAL
+            FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_ID,
+            FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO,
+            FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_DATA_INICIAL,
+            FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_DATA_FINAL
         };
 
         String selection =  FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_ID + " = ? AND " +
@@ -399,10 +403,10 @@ public class SelectFactory implements ISelectFactory {
         DAOFactoryCreator daoFactory = new DAOFactoryCreator();
 
         String[] projection = {
-                FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_ID,
-                FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO,
-                FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_DATA_INICIAL,
-                FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_DATA_FINAL
+            FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_ID,
+            FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO,
+            FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_DATA_INICIAL,
+            FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_DATA_FINAL
         };
 
         String selection =  FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO + " = ?";;
@@ -420,10 +424,10 @@ public class SelectFactory implements ISelectFactory {
         DAOFactoryCreator daoFactory = new DAOFactoryCreator();
 
         String[] projection = {
-                FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_ID,
-                FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO,
-                FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_DATA_INICIAL,
-                FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_DATA_FINAL
+            FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_ID,
+            FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO,
+            FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_DATA_INICIAL,
+            FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_DATA_FINAL
         };
 
         String selection =  FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_DATA_INICIAL + " BETWEEN ? AND ? OR " +
@@ -442,10 +446,10 @@ public class SelectFactory implements ISelectFactory {
         DAOFactoryCreator daoFactory = new DAOFactoryCreator();
 
         String[] projection = {
-                FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_ID,
-                FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO,
-                FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_DATA_INICIAL,
-                FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_DATA_FINAL
+            FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_ID,
+            FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO,
+            FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_DATA_INICIAL,
+            FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_DATA_FINAL
         };
 
         String selection =  "(" +   FeedReaderDadosUsoAplicativo.FeedEntry.COLUMN_NAME_DATA_INICIAL + " BETWEEN ? AND ? OR " +
@@ -465,10 +469,10 @@ public class SelectFactory implements ISelectFactory {
         DAOFactoryCreator daoFactory = new DAOFactoryCreator();
 
         String[] projection = {
-                FeedReaderDadosUsoSistema.FeedEntry.COLUMN_NAME_ID,
-                FeedReaderDadosUsoSistema.FeedEntry.COLUMN_NAME_ID_SISTEMA,
-                FeedReaderDadosUsoSistema.FeedEntry.COLUMN_NAME_DATA_INICIAL,
-                FeedReaderDadosUsoSistema.FeedEntry.COLUMN_NAME_DATA_FINAL
+            FeedReaderDadosUsoSistema.FeedEntry.COLUMN_NAME_ID,
+            FeedReaderDadosUsoSistema.FeedEntry.COLUMN_NAME_ID_SISTEMA,
+            FeedReaderDadosUsoSistema.FeedEntry.COLUMN_NAME_DATA_INICIAL,
+            FeedReaderDadosUsoSistema.FeedEntry.COLUMN_NAME_DATA_FINAL
         };
 
         dusAll = daoFactory.getFactry(context).createDadosUsoSistema().buscar(projection, null, null, null, null, null);
@@ -482,10 +486,10 @@ public class SelectFactory implements ISelectFactory {
         DAOFactoryCreator daoFactory = new DAOFactoryCreator();
 
         String[] projection = {
-                FeedReaderDadosUsoSistema.FeedEntry.COLUMN_NAME_ID,
-                FeedReaderDadosUsoSistema.FeedEntry.COLUMN_NAME_ID_SISTEMA,
-                FeedReaderDadosUsoSistema.FeedEntry.COLUMN_NAME_DATA_INICIAL,
-                FeedReaderDadosUsoSistema.FeedEntry.COLUMN_NAME_DATA_FINAL
+            FeedReaderDadosUsoSistema.FeedEntry.COLUMN_NAME_ID,
+            FeedReaderDadosUsoSistema.FeedEntry.COLUMN_NAME_ID_SISTEMA,
+            FeedReaderDadosUsoSistema.FeedEntry.COLUMN_NAME_DATA_INICIAL,
+            FeedReaderDadosUsoSistema.FeedEntry.COLUMN_NAME_DATA_FINAL
         };
 
         String selection =  FeedReaderDadosUsoSistema.FeedEntry.COLUMN_NAME_DATA_INICIAL + " BETWEEN ? AND ? OR " +
@@ -504,10 +508,10 @@ public class SelectFactory implements ISelectFactory {
         DAOFactoryCreator daoFactory = new DAOFactoryCreator();
 
         String[] projection = {
-                FeedReaderDadosUsoSistema.FeedEntry.COLUMN_NAME_ID,
-                FeedReaderDadosUsoSistema.FeedEntry.COLUMN_NAME_ID_SISTEMA,
-                FeedReaderDadosUsoSistema.FeedEntry.COLUMN_NAME_DATA_INICIAL,
-                FeedReaderDadosUsoSistema.FeedEntry.COLUMN_NAME_DATA_FINAL
+            FeedReaderDadosUsoSistema.FeedEntry.COLUMN_NAME_ID,
+            FeedReaderDadosUsoSistema.FeedEntry.COLUMN_NAME_ID_SISTEMA,
+            FeedReaderDadosUsoSistema.FeedEntry.COLUMN_NAME_DATA_INICIAL,
+            FeedReaderDadosUsoSistema.FeedEntry.COLUMN_NAME_DATA_FINAL
         };
 
         String selection =  FeedReaderDadosUsoSistema.FeedEntry.COLUMN_NAME_ID + " = ? AND " +
@@ -526,13 +530,13 @@ public class SelectFactory implements ISelectFactory {
         DAOFactoryCreator daoFactory = new DAOFactoryCreator();
 
         String[] projection = {
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID_CONFIGURACAO,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_DATA,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_TITULO,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_DESCRICAO,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_STATUS
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID_CONFIGURACAO,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_DATA,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_TITULO,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_DESCRICAO,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_STATUS
         };
 
         String selection =  FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID              + " = ? AND " +
@@ -552,13 +556,13 @@ public class SelectFactory implements ISelectFactory {
         DAOFactoryCreator daoFactory = new DAOFactoryCreator();
 
         String[] projection = {
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID_CONFIGURACAO,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_DATA,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_TITULO,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_DESCRICAO,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_STATUS
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID_CONFIGURACAO,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_DATA,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_TITULO,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_DESCRICAO,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_STATUS
         };
 
         String selection = "";
@@ -577,13 +581,13 @@ public class SelectFactory implements ISelectFactory {
         DAOFactoryCreator daoFactory = new DAOFactoryCreator();
 
         String[] projection = {
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID_CONFIGURACAO,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_DATA,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_TITULO,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_DESCRICAO,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_STATUS
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID_CONFIGURACAO,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_DATA,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_TITULO,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_DESCRICAO,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_STATUS
         };
 
         String selection =  FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO + " = ?" +
@@ -602,13 +606,13 @@ public class SelectFactory implements ISelectFactory {
         DAOFactoryCreator daoFactory = new DAOFactoryCreator();
 
         String[] projection = {
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID_CONFIGURACAO,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_DATA,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_TITULO,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_DESCRICAO,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_STATUS
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID_CONFIGURACAO,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_DATA,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_TITULO,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_DESCRICAO,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_STATUS
         };
 
         String selection =  FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_DATA + " BETWEEN ? AND ?" +
@@ -627,13 +631,13 @@ public class SelectFactory implements ISelectFactory {
         DAOFactoryCreator daoFactory = new DAOFactoryCreator();
 
         String[] projection = {
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID_CONFIGURACAO,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_DATA,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_TITULO,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_DESCRICAO,
-                FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_STATUS
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID_CONFIGURACAO,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_DATA,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_TITULO,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_DESCRICAO,
+            FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_STATUS
         };
 
         String selection =  FeedReaderNotificacaoAplicativo.FeedEntry.COLUMN_NAME_ID_APLICATIVO + " = ? AND " +
@@ -652,13 +656,13 @@ public class SelectFactory implements ISelectFactory {
         DAOFactoryCreator daoFactory = new DAOFactoryCreator();
 
         String[] projection = {
-                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID,
-                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID_SISTEMA,
-                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID_CONFIGURACAO,
-                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_DATA,
-                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_TITULO,
-                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_DESCRICAO,
-                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_STATUS
+            FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID,
+            FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID_SISTEMA,
+            FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID_CONFIGURACAO,
+            FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_DATA,
+            FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_TITULO,
+            FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_DESCRICAO,
+            FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_STATUS
         };
 
         String selection =  FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID              + " = ? AND " +
@@ -678,13 +682,13 @@ public class SelectFactory implements ISelectFactory {
         DAOFactoryCreator daoFactory = new DAOFactoryCreator();
 
         String[] projection = {
-                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID,
-                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID_SISTEMA,
-                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID_CONFIGURACAO,
-                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_DATA,
-                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_TITULO,
-                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_DESCRICAO,
-                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_STATUS
+            FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID,
+            FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID_SISTEMA,
+            FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID_CONFIGURACAO,
+            FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_DATA,
+            FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_TITULO,
+            FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_DESCRICAO,
+            FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_STATUS
         };
 
         String selection = "";
@@ -703,13 +707,13 @@ public class SelectFactory implements ISelectFactory {
         DAOFactoryCreator daoFactory = new DAOFactoryCreator();
 
         String[] projection = {
-                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID,
-                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID_SISTEMA,
-                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID_CONFIGURACAO,
-                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_DATA,
-                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_TITULO,
-                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_DESCRICAO,
-                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_STATUS
+            FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID,
+            FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID_SISTEMA,
+            FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID_CONFIGURACAO,
+            FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_DATA,
+            FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_TITULO,
+            FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_DESCRICAO,
+            FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_STATUS
         };
 
         String selection =  FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_DATA + " BETWEEN ? AND ?" +
@@ -728,13 +732,13 @@ public class SelectFactory implements ISelectFactory {
         DAOFactoryCreator daoFactory = new DAOFactoryCreator();
 
         String[] projection = {
-                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID,
-                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID_SISTEMA,
-                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID_CONFIGURACAO,
-                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_DATA,
-                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_TITULO,
-                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_DESCRICAO,
-                FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_STATUS
+            FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID,
+            FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID_SISTEMA,
+            FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID_CONFIGURACAO,
+            FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_DATA,
+            FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_TITULO,
+            FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_DESCRICAO,
+            FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_STATUS
         };
 
         String selection =  FeedReaderNotificacaoSistema.FeedEntry.COLUMN_NAME_ID_SISTEMA  + " = ? AND " +

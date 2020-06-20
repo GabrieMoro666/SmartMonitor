@@ -45,6 +45,7 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
                                                                                     FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ID         + " INTEGER PRIMARY KEY, " +
                                                                                     FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ID_SISTEMA + " INTEGER NOT NULL, "    +
                                                                                     FeedReaderAplicativo.FeedEntry.COLUMN_NAME_NOME       + " TEXT NOT NULL, "       +
+                                                                                    FeedReaderAplicativo.FeedEntry.COLUMN_NAME_PACOTE     + " TEXT NOT NULL, "       +
                                                                                     FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ATIVO      + " TEXT NOT NULL, "       +
                                                                                     "FOREIGN KEY(" +
                                                                                         FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ID_SISTEMA +

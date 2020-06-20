@@ -30,6 +30,7 @@ public class AplicativoDAO implements IAplicativoDAO {
         if (aplicativo.getId() != 0) values.put(FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ID, aplicativo.getId());
         values.put(FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ID_SISTEMA, aplicativo.getIdSistema());
         values.put(FeedReaderAplicativo.FeedEntry.COLUMN_NAME_NOME, aplicativo.getNome());
+        values.put(FeedReaderAplicativo.FeedEntry.COLUMN_NAME_PACOTE, aplicativo.getPacote());
         values.put(FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ATIVO, aplicativo.getAtivo());
 
         newRowId = db.insert(FeedReaderAplicativo.FeedEntry.TABLE_NAME, null, values);
@@ -59,6 +60,7 @@ public class AplicativoDAO implements IAplicativoDAO {
             a.setId(cursor.getLong(cursor.getColumnIndex(FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ID)));
             a.setIdSistema(cursor.getLong(cursor.getColumnIndex(FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ID_SISTEMA)));
             a.setNome(cursor.getString(cursor.getColumnIndex(FeedReaderAplicativo.FeedEntry.COLUMN_NAME_NOME)));
+            a.setPacote(cursor.getString(cursor.getColumnIndex(FeedReaderAplicativo.FeedEntry.COLUMN_NAME_PACOTE)));
             a.setAtivo(cursor.getString(cursor.getColumnIndex(FeedReaderAplicativo.FeedEntry.COLUMN_NAME_ATIVO)));
 
             aAll.add(a);

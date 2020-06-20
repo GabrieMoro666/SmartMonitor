@@ -17,6 +17,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import static com.dev.smartmonitor.util.ContextSingleton.getContext;
+
 public class Util {
 
     private Util(){}
@@ -426,18 +428,17 @@ public class Util {
         return data;
     }
 
-    public static Drawable buscarIconAplicativo(Context context, String nomeAplicativo){
+    public static Drawable buscarIconAplicativo(Context context, String nomePacote){
         Drawable drawable = null;
         String nomeAplicativoLido;
-        PackageManager packageManager = context.getPackageManager();
-        List<PackageInfo> listaAplicativos = packageManager.getInstalledPackages(0);
 
-        for (PackageInfo pi : listaAplicativos) {
-            nomeAplicativoLido = pi.applicationInfo.loadLabel(packageManager).toString();
+        try {
+            PackageManager packageManager = getContext().getPackageManager();
+            ApplicationInfo applicationInfo = packageManager.getApplicationInfo(nomePacote, PackageManager.GET_META_DATA);
 
-            if (nomeAplicativoLido.equals(nomeAplicativo)) {
-                drawable = (pi.applicationInfo.loadIcon(packageManager));
-            }
+            drawable = applicationInfo.loadIcon(packageManager);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
         }
 
         return drawable;

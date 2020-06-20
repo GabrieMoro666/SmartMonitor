@@ -6,6 +6,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
 import com.dev.smartmonitor.business.aplicativo.analise.model.AplicativoAnalise;
+import com.dev.smartmonitor.business.aplicativo.analise.model.AplicativoDispositivo;
 import com.dev.smartmonitor.business.basic.basic.BasicFactoryCreator;
 import com.dev.smartmonitor.persistence.dao.model.Aplicativo;
 import com.dev.smartmonitor.persistence.dao.model.Sistema;
@@ -21,20 +22,23 @@ public class AplicativoAnaliseFactory implements IAplicativoAnaliseFactory {
         this.context = context;
     }
 
-    private List<String> buscarAplicativosDispositivo(){
-        List<String> aplicativos = new LinkedList<>();
+    private List<AplicativoDispositivo> buscarAplicativosDispositivo(){
+        List<AplicativoDispositivo> aplicativosDispositivo = new LinkedList<>();
+        AplicativoDispositivo aplicativoDispositivo = null;
         PackageManager packageManager = context.getPackageManager();
         List<PackageInfo> listaAplicativos = packageManager.getInstalledPackages(0);
 
-//        packageManager.getico
-
         for (PackageInfo pi : listaAplicativos) {
             if ((pi.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0){
-                aplicativos.add(pi.applicationInfo.loadLabel(packageManager).toString());
+                aplicativoDispositivo = new AplicativoDispositivo();
+                aplicativoDispositivo.setAplicativo(pi.applicationInfo.loadLabel(packageManager).toString());
+                aplicativoDispositivo.setPacote(pi.applicationInfo.packageName);
+
+                aplicativosDispositivo.add(aplicativoDispositivo);
             }
         }
 
-        return aplicativos;
+        return aplicativosDispositivo;
     }
 
     private List<AplicativoAnalise> buscarAplicativosAnalise(){
@@ -59,13 +63,13 @@ public class AplicativoAnaliseFactory implements IAplicativoAnaliseFactory {
     @Override
     public void analizarAplicativo(){
         List<AplicativoAnalise> aplicativosAnalise;
-        List<String> aplicativosDispositivo;
+        List<AplicativoDispositivo> aplicativosDispositivo;
 
         aplicativosDispositivo = buscarAplicativosDispositivo();
         aplicativosAnalise = buscarAplicativosAnalise();
 
-        for (String nomeAplicativo : aplicativosDispositivo) {
-            analizarAplicativo(aplicativosAnalise, nomeAplicativo);
+        for (AplicativoDispositivo ad : aplicativosDispositivo) {
+            analizarAplicativo(aplicativosAnalise, ad.getAplicativo(), ad.getPacote());
         }
 
         verificarAplicativosVerificados(aplicativosAnalise);
@@ -80,7 +84,7 @@ public class AplicativoAnaliseFactory implements IAplicativoAnaliseFactory {
         }
     }
 
-    private void analizarAplicativo(List<AplicativoAnalise> aplicativosAnalise, String nomeAplicativo){
+    private void analizarAplicativo(List<AplicativoAnalise> aplicativosAnalise, String nomeAplicativo, String nomePacote){
         for (AplicativoAnalise a : aplicativosAnalise) {
             if (a.getAplicativo().getNome().equals(nomeAplicativo)){
                 a.setVerificado(true);
@@ -90,11 +94,11 @@ public class AplicativoAnaliseFactory implements IAplicativoAnaliseFactory {
             }
         }
 
-        inserirAplicativo(nomeAplicativo);
+        inserirAplicativo(nomeAplicativo, nomePacote);
     }
 
     @Override
-    public long analizarAplicativo(String aplicativoDispositivo){
+    public long analizarAplicativo(String aplicativoDispositivo, String nomePacote){
         BasicFactoryCreator basicFactory;
         Aplicativo aplicativo;
 
@@ -102,7 +106,7 @@ public class AplicativoAnaliseFactory implements IAplicativoAnaliseFactory {
         aplicativo = basicFactory.getFactry(context).createSelectFactory().buscarAplicativoByNome(aplicativoDispositivo);
 
         if (aplicativo == null){
-            return inserirAplicativo(aplicativoDispositivo);
+            return inserirAplicativo(aplicativoDispositivo, nomePacote);
         } else {
             aplicativo.setAtivo("S");
             atualizarAplicativo(aplicativo);
@@ -111,7 +115,7 @@ public class AplicativoAnaliseFactory implements IAplicativoAnaliseFactory {
         }
     }
 
-    private long inserirAplicativo(String nomeAplicativo){
+    private long inserirAplicativo(String nomeAplicativo, String nomePacote){
         BasicFactoryCreator basicFactory;
         Aplicativo aplicativo = new Aplicativo();
         Sistema sistema;
@@ -123,6 +127,7 @@ public class AplicativoAnaliseFactory implements IAplicativoAnaliseFactory {
 
         aplicativo.setIdSistema(sistema.getId());
         aplicativo.setNome(nomeAplicativo);
+        aplicativo.setPacote(nomePacote);
         aplicativo.setAtivo("S");
 
         idNewRow = basicFactory.getFactry(context).createInsertFactory().inserir(aplicativo);

@@ -86,19 +86,22 @@ public class MonitoradorService extends Service {
     }
 
     private void servico() {
-        String aplicativoAtual;
-        String aplicativoAnterior = "";
+        String aplicativoAtual, pacoteAtual;
+        String aplicativoAnterior = "", pacoteAnterior = "";
         Date dataInicial = Util.calcularDataAtual(), dataFinal = Util.calcularDataAtual();
 
         while (true) {
-            aplicativoAtual = buscarAplicativo();
+            pacoteAtual = buscarPacoteEmExecucao();
+            aplicativoAtual = buscarNomeAplicativoDoPacote(pacoteAtual);
+            //aplicativoAtual = buscarAplicativo();
 
             if (!aplicativoAtual.equals(aplicativoAnterior)) {
                 if (!aplicativoAnterior.isEmpty()) {
-                    processoServico(aplicativoAnterior, dataInicial, dataFinal);
+                    processoServico(aplicativoAnterior, pacoteAnterior, dataInicial, dataFinal);
                 }
 
                 aplicativoAnterior = aplicativoAtual;
+                pacoteAnterior = pacoteAtual;
                 dataInicial = Util.calcularDataAtual();
 
                 Log.e("TESTE", "APLICACAO EM EXECUCAO: " + aplicativoAtual);
@@ -115,12 +118,12 @@ public class MonitoradorService extends Service {
         }
     }
 
-    private void processoServico(String nomeAplicativo, Date dataInicial, Date dataFinal){
+    private void processoServico(String nomeAplicativo, String nomePacote, Date dataInicial, Date dataFinal){
         AplicativoAnaliseFactoryCreator aplicativoAnaliseFactory = new AplicativoAnaliseFactoryCreator();
         DadosFactoryCreator dadosFactory = new DadosFactoryCreator();
         long idAplicativo;
 
-        idAplicativo = aplicativoAnaliseFactory.getFactry(getContext()).analizarAplicativo(nomeAplicativo);
+        idAplicativo = aplicativoAnaliseFactory.getFactry(getContext()).analizarAplicativo(nomeAplicativo, nomePacote);
         dadosFactory.getFactryDadosAplicativo(getContext()).construirTempoUso(idAplicativo, dataInicial, dataFinal);
         dadosFactory.getFactryDadosSistema(getContext()).construirTempoUso(1L, dataInicial, dataFinal);
     }
@@ -176,7 +179,7 @@ public class MonitoradorService extends Service {
 
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
-            return "null";
+            return "Desconhecido";
         }
     }
 

@@ -67,7 +67,7 @@ public class TableFactory implements ITableFactory {
 
             if (dadosUsoAplicativos.size() > 0){
                 rowTable = new RowTable();
-                rowTable.setDrawable(Util.buscarIconAplicativo(context, a.getNome()));
+                rowTable.setDrawable(Util.buscarIconAplicativo(context, a.getPacote()));
                 rowTable.setNomeAplicativo(a.getNome());
                 rowTable.setTempoUso(Util.calcularDiaHoraMinutoDeMinutos(Util.calcularTempoDadosUso(dataInicial, dataFinal, (List<DataInicialFinal>) ((List<? extends DataInicialFinal>) dadosUsoAplicativos))));
 
