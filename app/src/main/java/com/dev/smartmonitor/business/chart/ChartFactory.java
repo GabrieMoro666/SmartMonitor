@@ -67,6 +67,7 @@ public class ChartFactory implements IChartFactory {
         List<Aplicativo> aplicativos = new LinkedList<>();
         List<DadosUsoAplicativo> dadosUsoAplicativos = new LinkedList<>();
         ValueDataEntry valueDataEntry;
+        float tempoCalculado;
 
         aplicativos = basicFactory.getFactry(context).createSelectFactory().buscarAplicativoAll("");
 
@@ -74,9 +75,13 @@ public class ChartFactory implements IChartFactory {
             dadosUsoAplicativos = basicFactory.getFactry(context).createSelectFactory().buscarDadosUsoAplicativoByDataIdAplicativo(dataInicial, dataFinal, a.getId());
 
             if (dadosUsoAplicativos.size() > 0){
-                valueDataEntry = new ValueDataEntry(a.getNome(), Util.calcularTempoDadosUso(dataInicial, dataFinal, (List<DataInicialFinal>) ((List<? extends DataInicialFinal>) dadosUsoAplicativos)) / 60);
+                tempoCalculado = Util.calcularTempoDadosUso(dataInicial, dataFinal, (List<DataInicialFinal>) ((List<? extends DataInicialFinal>) dadosUsoAplicativos)) / 60;
 
-                dataEntries.add(valueDataEntry);
+                if (tempoCalculado > 1) {
+                    valueDataEntry = new ValueDataEntry(a.getNome(), tempoCalculado);
+
+                    dataEntries.add(valueDataEntry);
+                }
             }
         }
 
