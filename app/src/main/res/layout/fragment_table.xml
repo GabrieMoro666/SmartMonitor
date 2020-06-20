@@ -35,7 +35,9 @@
                     android:layout_width="135dp"
                     android:layout_height="wrap_content"
                     android:gravity="right"
-                    android:text="Uso do dispositivo:" />
+                    android:text="Uso do dispositivo:"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/editTextUsoDispositivoTable"
@@ -43,6 +45,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textPersonName"
+                    android:textColor="@android:color/black"
                     android:textSize="10sp" />
 
             </LinearLayout>
@@ -57,7 +60,9 @@
                     android:layout_width="135dp"
                     android:layout_height="wrap_content"
                     android:gravity="right"
-                    android:text="Checagem:" />
+                    android:text="Checagem:"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/editTextChecagemTable"
@@ -65,6 +70,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:inputType="textPersonName"
+                    android:textColor="@android:color/black"
                     android:textSize="10sp" />
             </LinearLayout>
         </LinearLayout>
@@ -86,7 +92,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Aplicativo" />
+            android:text="Aplicativo"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/textViewTempoUsoTable"
@@ -94,7 +102,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Tempo de uso" />
+            android:text="Tempo de uso"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

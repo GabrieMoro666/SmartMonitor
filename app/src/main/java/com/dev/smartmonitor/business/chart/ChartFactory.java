@@ -1,6 +1,7 @@
 package com.dev.smartmonitor.business.chart;
 
 import android.content.Context;
+import android.graphics.Color;
 
 import com.anychart.AnyChart;
 import com.anychart.chart.common.dataentry.DataEntry;

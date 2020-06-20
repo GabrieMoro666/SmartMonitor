@@ -26,6 +26,8 @@ public class AplicativoAnaliseFactory implements IAplicativoAnaliseFactory {
         PackageManager packageManager = context.getPackageManager();
         List<PackageInfo> listaAplicativos = packageManager.getInstalledPackages(0);
 
+//        packageManager.getico
+
         for (PackageInfo pi : listaAplicativos) {
             if ((pi.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) == 0){
                 aplicativos.add(pi.applicationInfo.loadLabel(packageManager).toString());

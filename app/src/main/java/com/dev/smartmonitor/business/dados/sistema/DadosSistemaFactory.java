@@ -54,7 +54,7 @@ public class DadosSistemaFactory implements IDadosSistemaFactory {
         String titulo, descricao;
         EmitirNotificacaoFactoryCreator emitirNotificacaoFactory = new EmitirNotificacaoFactoryCreator();
 
-        titulo = "Tempo continuo atingido";
+        titulo = "Tempo contínuo atingido";
         descricao = "Sistema atingiu o limite de tempo configurado " + Util.calcularDiaHoraMinutoDeMinutos(Util.calcularMinutosDeHoras(tempoConfigurado)) + " com " + Util.calcularDiaHoraMinutoDeMinutos(tempoCalculado);
 
         emitirNotificacaoFactory.getFactry(context).emitirNotificacaoAplicativo(idSistema, idConfiguracao, titulo, descricao);
@@ -64,7 +64,7 @@ public class DadosSistemaFactory implements IDadosSistemaFactory {
         String titulo, descricao;
         EmitirNotificacaoFactoryCreator emitirNotificacaoFactory = new EmitirNotificacaoFactoryCreator();
 
-        titulo = "Tempo diario atingido";
+        titulo = "Tempo diário atingido";
         descricao = "Sistema atingiu o limite de tempo configurado " + Util.calcularDiaHoraMinutoDeMinutos(Util.calcularMinutosDeHoras(tempoConfigurado)) + " com " + Util.calcularDiaHoraMinutoDeMinutos(tempoCalculado);
 
         emitirNotificacaoFactory.getFactry(context).emitirNotificacaoAplicativo(idSistema, idConfiguracao, titulo, descricao);

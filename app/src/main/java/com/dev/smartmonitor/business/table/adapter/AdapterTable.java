@@ -3,6 +3,7 @@ package com.dev.smartmonitor.business.table.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,16 +35,19 @@ public class AdapterTable extends RecyclerView.Adapter{
 
         RowTableHolder rowItemHolder = (RowTableHolder) holder;
 
+        rowItemHolder.imageView.setImageDrawable(rowTable.getDrawable());
         rowItemHolder.textViewNomeAplicativo.setText(rowTable.getNomeAplicativo());
         rowItemHolder.textViewTempoUso.setText(rowTable.getTempoUso());
     }
 
     public class RowTableHolder extends RecyclerView.ViewHolder {
+        public ImageView imageView;
         public TextView textViewNomeAplicativo;
         public TextView textViewTempoUso;
 
         public RowTableHolder(View itemView) {
             super(itemView);
+            this.imageView = (ImageView)itemView.findViewById(R.id.imageViewRowTableIcon);
             this.textViewNomeAplicativo = (TextView)itemView.findViewById(R.id.textViewRowTableAplicativo);
             this.textViewTempoUso = (TextView)itemView.findViewById(R.id.textViewRowTableTempo);
         }

@@ -1,11 +1,19 @@
 package com.dev.smartmonitor.util;
 
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
+import android.widget.ImageView;
+
 import com.dev.smartmonitor.persistence.dao.model.ChecagemSistema;
 import com.dev.smartmonitor.persistence.dao.model.DataInicialFinal;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -418,5 +426,21 @@ public class Util {
         return data;
     }
 
+    public static Drawable buscarIconAplicativo(Context context, String nomeAplicativo){
+        Drawable drawable = null;
+        String nomeAplicativoLido;
+        PackageManager packageManager = context.getPackageManager();
+        List<PackageInfo> listaAplicativos = packageManager.getInstalledPackages(0);
+
+        for (PackageInfo pi : listaAplicativos) {
+            nomeAplicativoLido = pi.applicationInfo.loadLabel(packageManager).toString();
+
+            if (nomeAplicativoLido.equals(nomeAplicativo)) {
+                drawable = (pi.applicationInfo.loadIcon(packageManager));
+            }
+        }
+
+        return drawable;
+    }
 
 }

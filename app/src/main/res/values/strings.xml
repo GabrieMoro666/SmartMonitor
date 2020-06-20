@@ -11,8 +11,11 @@
     <string name="menu_aplicativos">Conf. tempo de aplicativos</string>
     <string name="menu_teste">Teste</string>
 
-    <string name="tempo_uso_diario">Tempo máximo de uso diário:</string>
-    <string name="tempo_uso_continuo">Tempo máximo de uso contínuo:</string>
+    <string name="tempo_uso_diario">Tempo de uso diário:</string>
+    <string name="tempo_uso_continuo">Tempo de uso contínuo:</string>
+
+    <string name="diario_app">Diário:</string>
+    <string name="continuo_app">Contínuo:</string>
 
     <string name="aba_dados_uso">Dados de uso</string>
     <string name="aba_graficos">Gráficos</string>

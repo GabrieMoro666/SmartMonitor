@@ -28,7 +28,8 @@
                 android:id="@+id/textViewRowConfiguracaoAplicativoNome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Figurinhas personalizadas para Whats app" />
+                android:text="Figurinhas personalizadas para Whats app"
+                android:textColor="@android:color/black" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -46,7 +47,8 @@
                         android:id="@+id/textViewRowConfiguracaoAplicativoDiario"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
-                        android:text="Diario:" />
+                        android:text="@string/diario_app"
+                        android:textColor="@android:color/black" />
 
                     <EditText
                         android:id="@+id/editTextRowConfiguracaoAplicativoDiario"
@@ -56,6 +58,7 @@
                         android:gravity="center"
                         android:inputType="textPersonName"
                         android:text="00:00"
+                        android:textColor="@android:color/black"
                         android:textSize="14dp" />
                 </LinearLayout>
 
@@ -69,7 +72,8 @@
                         android:id="@+id/textViewRowConfiguracaoAplicativoContinuo"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
-                        android:text="Continuo:" />
+                        android:text="@string/continuo_app"
+                        android:textColor="@android:color/black" />
 
                     <EditText
                         android:id="@+id/editTextRowConfiguracaoAplicativoContinuo"
@@ -79,6 +83,7 @@
                         android:gravity="center"
                         android:inputType="textPersonName"
                         android:text="00:00"
+                        android:textColor="@android:color/black"
                         android:textSize="14dp" />
                 </LinearLayout>
             </LinearLayout>

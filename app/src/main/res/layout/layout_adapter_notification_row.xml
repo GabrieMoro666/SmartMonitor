@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_marginStart="10dp"
-        android:gravity="center" />
+        android:gravity="center"
+        android:textColor="@android:color/black" />
 <!--        android:text="01/01/2020" />-->
 
     <TextView
@@ -23,7 +24,8 @@
         android:layout_marginEnd="10dp"
         android:layout_toStartOf="@+id/checkBoxRowNotificationConcluido"
         android:layout_toEndOf="@+id/textViewRowNotificationData"
-        android:gravity="center" />
+        android:gravity="center"
+        android:textColor="@android:color/black" />
 <!--        android:text="Tempo continuo atingido" />-->
 
     <CheckBox
@@ -43,6 +45,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="10dp"
+        android:textColor="@android:color/black"
         android:textSize="12dp" />
 <!--        android:text="Sistema atingiu o limite de tempo configurado 1000 minutos com 1100 minutos no dia 01/01/2020"-->
 

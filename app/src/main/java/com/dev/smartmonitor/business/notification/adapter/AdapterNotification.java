@@ -73,7 +73,7 @@ public class AdapterNotification extends RecyclerView.Adapter{
 
                 position = getAdapterPosition();
 
-                if (isChecked) {
+                if (isChecked && position >= 0) {
                     notificationFactory.getFactry(context).atualizarNotificacao(recyclerViewItems.get(position));
                     removerRowRecyclerView(position);
                 }

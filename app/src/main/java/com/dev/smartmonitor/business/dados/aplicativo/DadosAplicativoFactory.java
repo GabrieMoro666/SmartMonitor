@@ -59,8 +59,8 @@ public class DadosAplicativoFactory implements IDadosAplicativoFactory {
 
         aplicativo = basicFactory.getFactry(context).createSelectFactory().buscarAplicativoByIdAplicativo(idAplicativo);
 
-        titulo = "Tempo diario atingido";
-        descricao = "Aplicaivo " + aplicativo.getNome() + " atingiu o limite de tempo configurado " + Util.calcularDiaHoraMinutoDeMinutos(Util.calcularMinutosDeHoras(tempoConfigurado)) + " com " + Util.calcularDiaHoraMinutoDeMinutos(tempoCalculado);
+        titulo = "Tempo diário atingido!";
+        descricao = "Aplicativo " + aplicativo.getNome() + " atingiu o limite de tempo configurado " + Util.calcularDiaHoraMinutoDeMinutos(Util.calcularMinutosDeHoras(tempoConfigurado)) + " com " + Util.calcularDiaHoraMinutoDeMinutos(tempoCalculado);
 
         emitirNotificacaoFactory.getFactry(context).emitirNotificacaoAplicativo(idAplicativo, idConfiguracao, titulo, descricao);
     }
@@ -73,8 +73,8 @@ public class DadosAplicativoFactory implements IDadosAplicativoFactory {
 
         aplicativo = basicFactory.getFactry(context).createSelectFactory().buscarAplicativoByIdAplicativo(idAplicativo);
 
-        titulo = "Tempo continuo atingido";
-        descricao = "Aplicaivo " + aplicativo.getNome() + " atingiu o limite de tempo configurado " + Util.calcularDiaHoraMinutoDeMinutos(Util.calcularMinutosDeHoras(tempoConfigurado)) + " com " + Util.calcularDiaHoraMinutoDeMinutos(tempoCalculado);
+        titulo = "Tempo contínuo atingido!";
+        descricao = "Aplicativo " + aplicativo.getNome() + " atingiu o limite de tempo configurado " + Util.calcularDiaHoraMinutoDeMinutos(Util.calcularMinutosDeHoras(tempoConfigurado)) + " com " + Util.calcularDiaHoraMinutoDeMinutos(tempoCalculado);
 
         emitirNotificacaoFactory.getFactry(context).emitirNotificacaoAplicativo(idAplicativo, idConfiguracao, titulo, descricao);
     }

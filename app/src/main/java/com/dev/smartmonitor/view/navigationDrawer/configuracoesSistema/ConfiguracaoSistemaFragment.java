@@ -2,13 +2,20 @@ package com.dev.smartmonitor.view.navigationDrawer.configuracoesSistema;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.dev.smartmonitor.business.basic.basic.BasicFactoryCreator;
@@ -31,6 +38,7 @@ public class ConfiguracaoSistemaFragment extends Fragment {
     private ConfiguracaoTempoSistema configuracaoTempoSistema;
     private CustomDialogMensagem customDialogMensagem;
     private BasicFactoryCreator basicFactory;
+    private ImageButton imageButtonHell;
 
     public ConfiguracaoSistemaFragment(){
         this.context = ContextSingleton.getContext();
@@ -184,9 +192,33 @@ public class ConfiguracaoSistemaFragment extends Fragment {
         }
     }
 
+    class OnClickHelp implements View.OnClickListener{
+
+        private void alerta() {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setTitle("Informação");
+            builder.setMessage("Esta sessão dispõe os campos de configuração para tempo de uso máximo diário e contínuo do sistema.");
+            builder.setCancelable(false);
+            builder.setIcon(R.drawable.ic_baseline_help_24);
+            builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            builder.show();
+        }
+
+        @Override
+        public void onClick(View v) {
+            alerta();
+        }
+    }
+
     void init (View view) {
         editTextTempoDiario = (EditText)view.findViewById(R.id.editTextConfiguracaoSistemaDiario);
         editTextTempoContinuo = (EditText)view.findViewById(R.id.editTextConfiguracaoSistemaContinuo);
+        imageButtonHell = (ImageButton) view.findViewById(R.id.imageButtonConfiguracaoSistemaHelp);
 
         editTextTempoDiario.clearFocus();
         editTextTempoDiario.setFocusable(false);
@@ -196,6 +228,7 @@ public class ConfiguracaoSistemaFragment extends Fragment {
 
         editTextTempoDiario.setOnClickListener(new OnClickTempoDiario());
         editTextTempoContinuo.setOnClickListener(new OnClickTempoContinuo());
+        imageButtonHell.setOnClickListener(new OnClickHelp());
 
         configuracaoFactory = new ConfiguracaoFactoryCreator();
         configuracaoTempoSistema = configuracaoFactory.getFactryConfiguracaoSistema(context).construirConfiguracaoSistema(1L);
