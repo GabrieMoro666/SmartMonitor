@@ -127,7 +127,7 @@ public class AplicativoAnaliseFactory implements IAplicativoAnaliseFactory {
 
         aplicativo.setIdSistema(sistema.getId());
         aplicativo.setNome(nomeAplicativo);
-        aplicativo.setPacote(nomePacote);
+        aplicativo.setPacote(nomePacote.isEmpty() ? "DESCONHECIDO" : nomePacote);
         aplicativo.setAtivo("S");
 
         idNewRow = basicFactory.getFactry(context).createInsertFactory().inserir(aplicativo);
