@@ -4,13 +4,14 @@ import android.app.AppOpsManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.view.Menu;
 
+import com.dev.smartmonitor.receiver.ChecagemBroadCastReceiver;
 import com.dev.smartmonitor.service.MonitoradorService;
 import com.dev.smartmonitor.util.ContextSingleton;
 import com.dev.smartmonitor.R;
@@ -30,6 +31,7 @@ import androidx.appcompat.widget.Toolbar;
 public class SmartMonitor extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private ChecagemBroadCastReceiver checagemBroadCastReceiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,12 @@ public class SmartMonitor extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        checagemBroadCastReceiver = new ChecagemBroadCastReceiver();
+
+        IntentFilter filter = new IntentFilter(Intent.ACTION_SCREEN_OFF);
+        filter.addAction(Intent.ACTION_USER_PRESENT);
+
+        registerReceiver(checagemBroadCastReceiver, filter);
 
         ContextSingleton.setContext(SmartMonitor.this);
 
@@ -123,4 +131,11 @@ public class SmartMonitor extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    @Override
+    public void onDestroy() {
+        unregisterReceiver(checagemBroadCastReceiver);
+        super.onDestroy();
+    }
+
 }

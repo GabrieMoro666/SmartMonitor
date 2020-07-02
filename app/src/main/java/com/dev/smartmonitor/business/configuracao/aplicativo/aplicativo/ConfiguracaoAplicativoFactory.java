@@ -8,6 +8,7 @@ import com.dev.smartmonitor.business.basic.basic.BasicFactoryCreator;
 import com.dev.smartmonitor.business.configuracao.aplicativo.adapter.model.RowConfiguracaoAplicativo;
 import com.dev.smartmonitor.persistence.dao.model.Aplicativo;
 import com.dev.smartmonitor.persistence.dao.model.ConfiguracaoTempoAplicativo;
+import com.dev.smartmonitor.util.Util;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -42,6 +43,7 @@ public class ConfiguracaoAplicativoFactory implements IConfiguracaoAplicativoFac
 
             row.setIdAplicativo(a.getId());
             row.setNome(a.getNome());
+            row.setDrawable(Util.buscarIconAplicativo(context, a.getPacote()));
 
             if (configuracaoTempoAplicativo != null){
                 row.setTempoDiario(configuracaoTempoAplicativo.getTempoDiario());

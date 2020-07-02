@@ -89,32 +89,42 @@ public class MonitoradorService extends Service {
         String aplicativoAtual, pacoteAtual;
         String aplicativoAnterior = "", pacoteAnterior = "";
         Date dataInicial = Util.calcularDataAtual(), dataFinal = Util.calcularDataAtual();
+        AplicativoExecutandoSingleton aplicativoExecutandoSingleton = AplicativoExecutandoSingleton.getAplicativoExecutando();
+
+        aplicativoExecutandoSingleton.setExecucaoOn(true);
 
         while (true) {
             pacoteAtual = buscarPacoteEmExecucao();
             aplicativoAtual = buscarNomeAplicativoDoPacote(pacoteAtual);
             //aplicativoAtual = buscarAplicativo();
 
-            if (!aplicativoAtual.equals(aplicativoAnterior)) {
+            if (aplicativoExecutandoSingleton.isExecucaoOn()) {
+                if (!aplicativoAtual.equals(aplicativoAnterior)) {
+                    if (!aplicativoAnterior.isEmpty()) {
+                        processoServico(aplicativoAnterior, pacoteAnterior, dataInicial, dataFinal);
+                    }
+
+                    aplicativoAnterior = aplicativoAtual;
+                    pacoteAnterior = pacoteAtual;
+                    dataInicial = Util.calcularDataAtual();
+
+                    Log.e("TESTE", "APLICACAO EM EXECUCAO: " + aplicativoAtual);
+                }else{
+                    try {
+                        Log.e("TESTE", "Desmaiou");
+                        dataFinal = Util.calcularDataAtual();
+                        Thread.sleep(1500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }else {
                 if (!aplicativoAnterior.isEmpty()) {
                     processoServico(aplicativoAnterior, pacoteAnterior, dataInicial, dataFinal);
-                }
-
-                aplicativoAnterior = aplicativoAtual;
-                pacoteAnterior = pacoteAtual;
-                dataInicial = Util.calcularDataAtual();
-
-                Log.e("TESTE", "APLICACAO EM EXECUCAO: " + aplicativoAtual);
-            }else{
-                try {
-                    Log.e("TESTE", "Desmaiou");
-                    dataFinal = Util.calcularDataAtual();
-                    Thread.sleep(1500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    aplicativoAnterior = "";
+                    pacoteAnterior = "";
                 }
             }
-
         }
     }
 

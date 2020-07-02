@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -45,12 +46,14 @@ public class AdapterConfiguracaoAplicativo extends RecyclerView.Adapter {
         RowConfiguracaoAplicativoHolder rowItemHolder = (RowConfiguracaoAplicativoHolder) holder;
 
         rowItemHolder.textViewAplicativo.setText(rowConfiguracaoAplicativo.getNome());
+        rowItemHolder.imageView.setImageDrawable(rowConfiguracaoAplicativo.getDrawable());
         rowItemHolder.editTextTempoDiario.setText(rowConfiguracaoAplicativo.getTempoDiario());
         rowItemHolder.editTextTempoContinuo.setText(rowConfiguracaoAplicativo.getTempoContinuo());
     }
 
     public class RowConfiguracaoAplicativoHolder extends RecyclerView.ViewHolder {
         public TextView textViewAplicativo;
+        public ImageView imageView;
         public EditText editTextTempoDiario;
         public EditText editTextTempoContinuo;
         private ConfiguracaoFactoryCreator configuracaoFactory;
@@ -60,6 +63,7 @@ public class AdapterConfiguracaoAplicativo extends RecyclerView.Adapter {
             super(itemView);
 
             this.textViewAplicativo = (TextView)itemView.findViewById(R.id.textViewRowConfiguracaoAplicativoNome);
+            this.imageView = (ImageView)itemView.findViewById(R.id.imageViewRowConfiguracaoAplicativoIcon);
             this.editTextTempoDiario = (EditText) itemView.findViewById(R.id.editTextRowConfiguracaoAplicativoDiario);
             this.editTextTempoContinuo = (EditText) itemView.findViewById(R.id.editTextRowConfiguracaoAplicativoContinuo);
 
