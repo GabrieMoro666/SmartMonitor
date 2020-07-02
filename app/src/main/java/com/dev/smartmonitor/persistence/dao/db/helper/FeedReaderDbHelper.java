@@ -18,7 +18,7 @@ public class FeedReaderDbHelper extends SQLiteOpenHelper {
     Context context;
 
     public static final int DATABASE_VERSION = 1;
-    public static final String DATABASE_NAME = "devil666.db";
+    public static final String DATABASE_NAME = "hell666.db";
 
     private static final String SQL_CREATE_ENTRIES_SISTEMA = "CREATE TABLE " +  FeedReaderSistema.FeedEntry.TABLE_NAME     + " ("                   +
                                                                                 FeedReaderSistema.FeedEntry.COLUMN_NAME_ID + " INTEGER PRIMARY KEY" +
